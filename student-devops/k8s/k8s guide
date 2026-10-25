@@ -1,0 +1,111 @@
+student-registration application in K8s
+deployment file: application.yaml and database.yaml
+> create namspace:
+# kubectl create ns student-devops
+
+> Create the database Secret
+root@escbash-lab:~/student# python3 -c "import secrets; print('DB_PASSWORD=' + secrets.token_hex(24))" > .env
+chmod 600 .env
+root@escbash-lab:~/student# kubectl -n student-devops create secret generic database-secret   --from-env-file=.env
+secret/database-secret created
+root@escbash-lab:~/student# kubectl get secret -n student-devops 
+NAME              TYPE     DATA   AGE
+database-secret   Opaque   1      40s
+root@escbash-lab:~/student# 
+
+
+> deploy database
+
+root@escbash-lab:~/student# ls
+application.yaml  database.yaml
+root@escbash-lab:~/student# kubectl apply -f database.yaml 
+configmap/database-schema created
+service/db created
+statefulset.apps/student-db created
+
+root@escbash-lab:~/student# kubectl -n student-devops rollout status statefulset/student-db --timeout=180s
+partitioned roll out complete: 1 new pods have been updated...
+root@escbash-lab:~/student# kubectl -n student-devops get pods,pvc
+NAME               READY   STATUS    RESTARTS   AGE
+pod/student-db-0   1/1     Running   0          2m
+
+NAME                                      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/data-student-db-0   Bound    pvc-29646a33-97a6-4b30-afba-f86fa77a9501   1Gi        RWO            standard       <unset>                 2m
+root@escbash-lab:~/student# 
+
+If the rollout fails, stop here and inspect:
+kubectl -n student-devops describe pod student-db-0
+kubectl -n student-devops logs student-db-0 --tail=50
+kubectl -n student-devops get pvc
+
+> Deploy the application
+
+root@escbash-lab:~/student# kubectl apply -f application.yaml 
+configmap/application-config created
+deployment.apps/student-app created
+service/student-app created
+
+root@escbash-lab:~/student# kubectl -n student-devops rollout status deployment/student-app --timeout=180s
+deployment "student-app" successfully rolled out
+
+root@escbash-lab:~/student# kubectl -n student-devops get pod,pvc,svc
+NAME                               READY   STATUS    RESTARTS   AGE
+pod/student-app-55569f5f56-swljf   1/1     Running   0          2m2s
+pod/student-db-0                   1/1     Running   0          7m17s
+
+NAME                                      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/data-student-db-0   Bound    pvc-29646a33-97a6-4b30-afba-f86fa77a9501   1Gi        RWO            standard       <unset>                 7m17s
+
+NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/db            ClusterIP   10.96.254.140   <none>        5432/TCP   7m17s
+service/student-app   ClusterIP   10.96.174.229   <none>        80/TCP     2m2s
+root@escbash-lab:~/student# 
+
+> Forward the application port
+
+root@escbash-lab:~/student# curl -I http://10.96.174.229:80
+kubectl -n student-devops port-forward \
+  --address 0.0.0.0 \
+  svc/student-app 8080:80
+  
+  Port	Location
+8080	escbash host
+80	    Kubernetes Service
+8080	Application container
+
+--address 0.0.0.0 allows the escbash preview to reach the forwarding process; the default is localhost only
+
+> check application is working or not
+root@escbash-lab:~/student# curl -I http://localhost:8080
+Handling connection for 8080
+HTTP/1.1 200 OK
+Server: gunicorn
+Date: Sun, 25 Oct 2026 12:43:02 GMT
+Connection: close
+Content-Type: text/html; charset=utf-8
+Content-Length: 3350
+
+root@escbash-lab:~/student# curl -f http://localhost:8080/health/ready
+Handling connection for 8080
+{"status":"ready"}
+
+
+browser through escbash
+		|
+Existing kind cluster
+host port 8080: kubectl port forward
+		|
+student app service: port 80 (cluster IP service)
+		|
+Flask application pod: port 8080
+		|
+DB service: port 5432
+		|
+postgresSQL pod: student-db-0
+		|
+Persistent database volume
+
+ 
+
+
+
