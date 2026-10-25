@@ -1,0 +1,377 @@
+Started by user sachin
+Obtained student-devops/Jenkinsfile from git https://github.com/Sachin-dev-hub/test.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/student-registration-build-push
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] timeout
+[2026-10-25T15:28:01.050Z] Timeout set to expire in 30 min
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] checkout
+[2026-10-25T15:28:01.343Z] Selected Git installation does not exist. Using Default
+[2026-10-25T15:28:01.343Z] The recommended git tool is: NONE
+[2026-10-25T15:28:01.343Z] No credentials specified
+[2026-10-25T15:28:01.344Z]  > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/student-registration-build-push/.git # timeout=10
+[2026-10-25T15:28:01.390Z] Fetching changes from the remote Git repository
+[2026-10-25T15:28:01.401Z]  > git config remote.origin.url https://github.com/Sachin-dev-hub/test.git # timeout=10
+[2026-10-25T15:28:01.436Z] Fetching upstream changes from https://github.com/Sachin-dev-hub/test.git
+[2026-10-25T15:28:01.436Z]  > git --version # timeout=10
+[2026-10-25T15:28:01.464Z]  > git --version # 'git version 2.43.0'
+[2026-10-25T15:28:01.464Z]  > git fetch --tags --force --progress -- https://github.com/Sachin-dev-hub/test.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+[2026-10-25T15:28:02.208Z]  > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+[2026-10-25T15:28:02.237Z] Checking out Revision 0e7d5bc9799f552c095cff94da85f4c66b4930eb (refs/remotes/origin/main)
+[2026-10-25T15:28:02.237Z]  > git config core.sparsecheckout # timeout=10
+[2026-10-25T15:28:02.261Z]  > git checkout -f 0e7d5bc9799f552c095cff94da85f4c66b4930eb # timeout=10
+[2026-10-25T15:28:02.300Z] Commit message: "Update Dockerfile"
+[2026-10-25T15:28:02.300Z]  > git rev-list --no-walk 0e7d5bc9799f552c095cff94da85f4c66b4930eb # timeout=10
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
+[2026-10-25T15:28:02.825Z] + git rev-parse --short=12 HEAD
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Check prerequisites)
+[Pipeline] sh
+[2026-10-25T15:28:03.690Z] + set -eu
+[2026-10-25T15:28:03.691Z] + whoami
+[2026-10-25T15:28:03.691Z] jenkins
+[2026-10-25T15:28:03.691Z] + git --version
+[2026-10-25T15:28:03.691Z] git version 2.43.0
+[2026-10-25T15:28:03.691Z] + python3 --version
+[2026-10-25T15:28:03.691Z] Python 3.12.3
+[2026-10-25T15:28:03.691Z] + docker version
+[2026-10-25T15:28:03.691Z] Client:
+[2026-10-25T15:28:03.691Z]  Version:           29.1.3
+[2026-10-25T15:28:03.691Z]  API version:       1.52
+[2026-10-25T15:28:03.691Z]  Go version:        go1.24.4
+[2026-10-25T15:28:03.691Z]  Git commit:        29.1.3-0ubuntu3~24.04.2
+[2026-10-25T15:28:03.691Z]  Built:             Wed Apr 29 16:41:06 2026
+[2026-10-25T15:28:03.691Z]  OS/Arch:           linux/amd64
+[2026-10-25T15:28:03.691Z]  Context:           default
+[2026-10-25T15:28:03.691Z] 
+[2026-10-25T15:28:03.691Z] Server:
+[2026-10-25T15:28:03.691Z]  Engine:
+[2026-10-25T15:28:03.691Z]   Version:          29.1.3
+[2026-10-25T15:28:03.691Z]   API version:      1.52 (minimum version 1.44)
+[2026-10-25T15:28:03.691Z]   Go version:       go1.24.4
+[2026-10-25T15:28:03.691Z]   Git commit:       29.1.3-0ubuntu3~24.04.2
+[2026-10-25T15:28:03.691Z]   Built:            Wed Apr 29 16:41:06 2026
+[2026-10-25T15:28:03.691Z]   OS/Arch:          linux/amd64
+[2026-10-25T15:28:03.691Z]   Experimental:     false
+[2026-10-25T15:28:03.694Z]  containerd:
+[2026-10-25T15:28:03.694Z]   Version:          2.2.1
+[2026-10-25T15:28:03.694Z]   GitCommit:        
+[2026-10-25T15:28:03.694Z]  runc:
+[2026-10-25T15:28:03.694Z]   Version:          1.3.4-0ubuntu1~24.04.1
+[2026-10-25T15:28:03.694Z]   GitCommit:        
+[2026-10-25T15:28:03.694Z]  docker-init:
+[2026-10-25T15:28:03.694Z]   Version:          0.19.0
+[2026-10-25T15:28:03.694Z]   GitCommit:        
+[2026-10-25T15:28:03.694Z] + test -f student-devops/Dockerfile
+[2026-10-25T15:28:03.694Z] + test -f student-devops/requirements.txt
+[2026-10-25T15:28:03.694Z] + test -d student-devops/tests
+[2026-10-25T15:28:03.694Z] + echo Image to build: sachinmaskar/student-registration:build-6-0e7d5bc9799f
+[2026-10-25T15:28:03.694Z] Image to build: sachinmaskar/student-registration:build-6-0e7d5bc9799f
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Python tests)
+[Pipeline] dir
+[2026-10-25T15:28:04.102Z] Running in /var/lib/jenkins/workspace/student-registration-build-push/student-devops
+[Pipeline] {
+[Pipeline] sh
+[2026-10-25T15:28:04.554Z] + set -eu
+[2026-10-25T15:28:04.554Z] + python3 -m venv .venv
+[2026-10-25T15:28:09.479Z] + .venv/bin/pip install -r requirements.txt
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: Flask==3.1.2 in ./.venv/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (3.1.2)
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: gunicorn==23.0.0 in ./.venv/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (23.0.0)
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: psycopg==3.2.10 in ./.venv/lib/python3.12/site-packages (from psycopg[binary]==3.2.10->-r requirements.txt (line 3)) (3.2.10)
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: blinker>=1.9.0 in ./.venv/lib/python3.12/site-packages (from Flask==3.1.2->-r requirements.txt (line 1)) (1.9.0)
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: click>=8.1.3 in ./.venv/lib/python3.12/site-packages (from Flask==3.1.2->-r requirements.txt (line 1)) (8.5.0)
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: itsdangerous>=2.2.0 in ./.venv/lib/python3.12/site-packages (from Flask==3.1.2->-r requirements.txt (line 1)) (2.2.0)
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: jinja2>=3.1.2 in ./.venv/lib/python3.12/site-packages (from Flask==3.1.2->-r requirements.txt (line 1)) (3.1.6)
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: markupsafe>=2.1.1 in ./.venv/lib/python3.12/site-packages (from Flask==3.1.2->-r requirements.txt (line 1)) (3.0.4)
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: werkzeug>=3.1.0 in ./.venv/lib/python3.12/site-packages (from Flask==3.1.2->-r requirements.txt (line 1)) (3.1.9)
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: packaging in ./.venv/lib/python3.12/site-packages (from gunicorn==23.0.0->-r requirements.txt (line 2)) (26.3)
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: typing-extensions>=4.6 in ./.venv/lib/python3.12/site-packages (from psycopg==3.2.10->psycopg[binary]==3.2.10->-r requirements.txt (line 3)) (4.16.0)
+[2026-10-25T15:28:10.046Z] Requirement already satisfied: psycopg-binary==3.2.10 in ./.venv/lib/python3.12/site-packages (from psycopg[binary]==3.2.10->-r requirements.txt (line 3)) (3.2.10)
+[2026-10-25T15:28:10.627Z] + .venv/bin/python -m unittest discover -s tests -v
+[2026-10-25T15:28:11.133Z] test_database_outage (test_app.Tests.test_database_outage) ... [2026-10-25 15:28:11,001] ERROR in app: Database operation failed (OperationalError)
+[2026-10-25T15:28:11.133Z] ok
+[2026-10-25T15:28:11.133Z] test_invalid_input (test_app.Tests.test_invalid_input) ... ok
+[2026-10-25T15:28:11.133Z] test_live_independent_of_database (test_app.Tests.test_live_independent_of_database) ... ok
+[2026-10-25T15:28:11.133Z] test_page (test_app.Tests.test_page) ... ok
+[2026-10-25T15:28:11.133Z] test_validation (test_app.Tests.test_validation) ... ok
+[2026-10-25T15:28:11.133Z] 
+[2026-10-25T15:28:11.133Z] ----------------------------------------------------------------------
+[2026-10-25T15:28:11.133Z] Ran 5 tests in 0.028s
+[2026-10-25T15:28:11.133Z] 
+[2026-10-25T15:28:11.133Z] OK
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build image)
+[Pipeline] dir
+[2026-10-25T15:28:12.902Z] Running in /var/lib/jenkins/workspace/student-registration-build-push/student-devops
+[Pipeline] {
+[Pipeline] sh
+[2026-10-25T15:28:13.314Z] + set -eu
+[2026-10-25T15:28:13.315Z] + git rev-parse HEAD
+[2026-10-25T15:28:13.315Z] + docker build --label org.opencontainers.image.revision=0e7d5bc9799f552c095cff94da85f4c66b4930eb -t sachinmaskar/student-registration:build-6-0e7d5bc9799f .
+[2026-10-25T15:28:13.315Z] DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+[2026-10-25T15:28:13.315Z]             Install the buildx component to build images with BuildKit:
+[2026-10-25T15:28:13.315Z]             https://docs.docker.com/go/buildx/
+[2026-10-25T15:28:13.315Z] 
+[2026-10-25T15:28:13.315Z] Sending build context to Docker daemon  43.52kB[2026-10-25T15:28:13.315Z] 
+[2026-10-25T15:28:13.315Z] Step 1/10 : FROM python:3.12-slim
+[2026-10-25T15:28:13.315Z]  ---> a0f57064cbdc
+[2026-10-25T15:28:13.315Z] Step 2/10 : ENV PYTHONDONTWRITEBYTECODE=1     PYTHONUNBUFFERED=1
+[2026-10-25T15:28:13.571Z]  ---> Using cache
+[2026-10-25T15:28:13.571Z]  ---> 517fcd9a87fc
+[2026-10-25T15:28:13.571Z] Step 3/10 : WORKDIR /app
+[2026-10-25T15:28:13.571Z]  ---> Using cache
+[2026-10-25T15:28:13.571Z]  ---> e1762347f424
+[2026-10-25T15:28:13.571Z] Step 4/10 : COPY requirements.txt .
+[2026-10-25T15:28:13.571Z]  ---> Using cache
+[2026-10-25T15:28:13.571Z]  ---> e68a7066e8fd
+[2026-10-25T15:28:13.571Z] Step 5/10 : RUN pip install --no-cache-dir -r requirements.txt     && useradd --uid 10001 --create-home appuser
+[2026-10-25T15:28:13.571Z]  ---> Using cache
+[2026-10-25T15:28:13.571Z]  ---> 68e18ccd73f1
+[2026-10-25T15:28:13.571Z] Step 6/10 : COPY --chown=appuser:appuser app/ .
+[2026-10-25T15:28:13.571Z]  ---> Using cache
+[2026-10-25T15:28:13.571Z]  ---> 9de407b3d90f
+[2026-10-25T15:28:13.571Z] Step 7/10 : USER 10001
+[2026-10-25T15:28:13.829Z]  ---> Using cache
+[2026-10-25T15:28:13.829Z]  ---> 09c79f246081
+[2026-10-25T15:28:13.829Z] Step 8/10 : EXPOSE 8080
+[2026-10-25T15:28:13.829Z]  ---> Using cache
+[2026-10-25T15:28:13.829Z]  ---> 1db949c2a426
+[2026-10-25T15:28:13.829Z] Step 9/10 : CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "--access-logfile", "-", "--error-logfile", "-", "app:app"]
+[2026-10-25T15:28:13.829Z]  ---> Using cache
+[2026-10-25T15:28:13.829Z]  ---> cee2c61dd960
+[2026-10-25T15:28:13.829Z] Step 10/10 : LABEL org.opencontainers.image.revision=0e7d5bc9799f552c095cff94da85f4c66b4930eb
+[2026-10-25T15:28:13.829Z]  ---> Using cache
+[2026-10-25T15:28:13.829Z]  ---> ae4b1a5f9dac
+[2026-10-25T15:28:13.829Z] Successfully built ae4b1a5f9dac
+[2026-10-25T15:28:13.829Z] Successfully tagged sachinmaskar/student-registration:build-6-0e7d5bc9799f
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Application smoke test)
+[Pipeline] sh
+[2026-10-25T15:28:14.689Z] + set -eu
+[2026-10-25T15:28:14.689Z] + mktemp -d
+[2026-10-25T15:28:14.689Z] + smoke_dir=/tmp/tmp.kbe7pS3Yp9
+[2026-10-25T15:28:14.689Z] + trap if [ -f "$smoke_dir/container-id" ]; then
+[2026-10-25T15:28:14.689Z]                               docker rm -f "$(cat "$smoke_dir/container-id")" >/dev/null 2>&1 || true
+[2026-10-25T15:28:14.689Z]                           fi
+[2026-10-25T15:28:14.689Z]                           rm -rf "$smoke_dir" EXIT
+[2026-10-25T15:28:14.689Z] + docker run -d --cidfile /tmp/tmp.kbe7pS3Yp9/container-id sachinmaskar/student-registration:build-6-0e7d5bc9799f
+[2026-10-25T15:28:15.244Z] 84fd2ae0d628ada6cab8186e956a244c6c3cad785f10675c9d24e99ae090378a
+[2026-10-25T15:28:16.298Z] + cat /tmp/tmp.kbe7pS3Yp9/container-id
+[2026-10-25T15:28:16.298Z] + container_id=84fd2ae0d628ada6cab8186e956a244c6c3cad785f10675c9d24e99ae090378a
+[2026-10-25T15:28:16.298Z] + docker exec -i 84fd2ae0d628ada6cab8186e956a244c6c3cad785f10675c9d24e99ae090378a python -
+[2026-10-25T15:28:17.770Z] Application page and liveness checks passed
+[2026-10-25T15:28:18.022Z] + [ -f /tmp/tmp.kbe7pS3Yp9/container-id ]
+[2026-10-25T15:28:18.022Z] + cat /tmp/tmp.kbe7pS3Yp9/container-id
+[2026-10-25T15:28:18.022Z] + docker rm -f 84fd2ae0d628ada6cab8186e956a244c6c3cad785f10675c9d24e99ae090378a
+[2026-10-25T15:28:18.937Z] + rm -rf /tmp/tmp.kbe7pS3Yp9
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push to Docker Hub)
+[Pipeline] withCredentials
+[2026-10-25T15:28:19.499Z] Masking supported pattern matches of $DOCKERHUB_TOKEN
+[Pipeline] {
+[Pipeline] sh
+[2026-10-25T15:28:19.952Z] + set -eu
+[2026-10-25T15:28:19.952Z] + set +x
+[2026-10-25T15:28:22.238Z] 
+[2026-10-25T15:28:22.238Z] WARNING! Your credentials are stored unencrypted in '/tmp/tmp.JdQDLR6UjA/config.json'.
+[2026-10-25T15:28:22.238Z] Configure a credential helper to remove this warning. See
+[2026-10-25T15:28:22.238Z] https://docs.docker.com/go/credential-store/
+[2026-10-25T15:28:22.238Z] 
+[2026-10-25T15:28:22.238Z] Login Succeeded
+[2026-10-25T15:28:22.238Z] The push refers to repository [docker.io/sachinmaskar/student-registration]
+[2026-10-25T15:28:22.238Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:22.238Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:22.238Z] f2be67225471: Waiting
+[2026-10-25T15:28:22.238Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:22.238Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:22.238Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:22.238Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:22.238Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:22.501Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:22.501Z] f2be67225471: Waiting
+[2026-10-25T15:28:22.501Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:22.501Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:22.504Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:22.504Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:22.504Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:22.504Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:22.504Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:22.504Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:22.504Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:22.504Z] f2be67225471: Waiting
+[2026-10-25T15:28:22.504Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:22.504Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:22.504Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:22.504Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:22.504Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:22.504Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:22.504Z] f2be67225471: Waiting
+[2026-10-25T15:28:22.504Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:22.504Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:22.504Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:22.504Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:22.504Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:22.756Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:22.756Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:22.756Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:22.756Z] f2be67225471: Waiting
+[2026-10-25T15:28:22.757Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:22.757Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:22.757Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:22.757Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:22.757Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:22.757Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:22.757Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:22.757Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:22.757Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:22.757Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:22.757Z] f2be67225471: Waiting
+[2026-10-25T15:28:22.757Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:23.010Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:23.010Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:23.010Z] f2be67225471: Waiting
+[2026-10-25T15:28:23.010Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:23.010Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:23.010Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:23.010Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:23.010Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:23.010Z] f2be67225471: Waiting
+[2026-10-25T15:28:23.010Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:23.010Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:23.010Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:23.010Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:23.010Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:23.010Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:23.010Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:23.010Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:23.010Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:23.010Z] f2be67225471: Waiting
+[2026-10-25T15:28:23.010Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:23.010Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:23.010Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:23.010Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:23.010Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:23.267Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:23.267Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:23.267Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:23.267Z] f2be67225471: Waiting
+[2026-10-25T15:28:23.267Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:23.267Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:23.267Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:23.267Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:23.267Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:23.267Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:23.267Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:23.267Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:23.267Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:23.267Z] f2be67225471: Waiting
+[2026-10-25T15:28:23.267Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:23.267Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:23.519Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:23.519Z] 5c397e4307db: Waiting
+[2026-10-25T15:28:23.519Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:23.519Z] f2be67225471: Waiting
+[2026-10-25T15:28:23.519Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:23.519Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:23.519Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:23.519Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:23.519Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:23.519Z] 5c397e4307db: Layer already exists
+[2026-10-25T15:28:23.519Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:23.519Z] f2be67225471: Waiting
+[2026-10-25T15:28:23.519Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:23.519Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:23.519Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:23.519Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:23.519Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:23.519Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:23.519Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:23.519Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:23.519Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:23.519Z] f2be67225471: Waiting
+[2026-10-25T15:28:23.519Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:23.778Z] f2be67225471: Waiting
+[2026-10-25T15:28:23.778Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:23.778Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:23.778Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:23.778Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:23.778Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:23.778Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:23.778Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:23.778Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:23.778Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:23.778Z] f2be67225471: Waiting
+[2026-10-25T15:28:23.778Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:23.778Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:23.778Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:24.066Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:24.066Z] be6443c06d3c: Waiting
+[2026-10-25T15:28:24.066Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:24.066Z] b524bb3aba73: Waiting
+[2026-10-25T15:28:24.066Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:24.066Z] f2be67225471: Waiting
+[2026-10-25T15:28:24.066Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:24.067Z] 8ffd28e78fa2: Waiting
+[2026-10-25T15:28:24.068Z] f2be67225471: Layer already exists
+[2026-10-25T15:28:24.068Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:24.068Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:24.068Z] be6443c06d3c: Layer already exists
+[2026-10-25T15:28:24.068Z] f1a95dc310ba: Waiting
+[2026-10-25T15:28:24.068Z] b524bb3aba73: Layer already exists
+[2026-10-25T15:28:24.068Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:24.068Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:24.325Z] 96e1837b862d: Waiting
+[2026-10-25T15:28:24.325Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:24.325Z] 031f2aeab909: Waiting
+[2026-10-25T15:28:24.882Z] f1a95dc310ba: Pushed
+[2026-10-25T15:28:24.882Z] 8ffd28e78fa2: Pushed
+[2026-10-25T15:28:25.135Z] 96e1837b862d: Pushed
+[2026-10-25T15:28:27.665Z] 031f2aeab909: Pushed
+[2026-10-25T15:28:29.825Z] build-6-0e7d5bc9799f: digest: sha256:ae4b1a5f9dac3b6a91ac7d5d92303239bbca574e15022c6ac0330866ce74413b size: 2055
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+[2026-10-25T15:28:30.525Z] Image pushed successfully: sachinmaskar/student-registration:build-6-0e7d5bc9799f
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
