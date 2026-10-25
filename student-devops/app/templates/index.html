@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Student Registration</title>
+<style>body{font:16px system-ui;background:#eef2f7;color:#172338;max-width:960px;margin:40px auto;padding:20px}main{background:white;padding:28px;border-radius:16px}h1{margin-bottom:6px}input,button{font:inherit;padding:10px;margin:5px 0}input{box-sizing:border-box;width:100%;border:1px solid #abb8ca;border-radius:5px}button{cursor:pointer;background:#164db5;color:white;border:0;border-radius:5px}td,th{text-align:left;padding:12px;border-bottom:1px solid #ddd}table{width:100%;border-collapse:collapse}#message{min-height:24px;color:#9a3412}.scroll{overflow:auto}small{color:#53647a}</style>
+<main><small>DEVOPS LAB • FLASK + POSTGRESQL</small><h1>Student Registration</h1><p>Register students and manage course enrolments.</p>
+<form id="form"><label>Name<input id="name" required maxlength="100"></label><label>Email<input id="email" type="email" required maxlength="254"></label><label>Course<input id="course" required maxlength="100"></label><button id="save">Add student</button> <button type="button" id="cancel">Cancel edit</button></form>
+<p id="message" role="status"></p><button id="refresh">Refresh list</button><div class="scroll"><table><thead><tr><th>Name</th><th>Email</th><th>Course</th><th>Actions</th></tr></thead><tbody id="rows"></tbody></table></div><small>Lab application: no login yet. Use sample data only.</small></main>
+<script>
+let editId=null;
+const el=id=>document.getElementById(id);
+async function api(path,options={}){const r=await fetch(path,options);if(!r.ok){const d=await r.json().catch(()=>({error:'Request failed'}));throw Error(d.error||'Request failed')}return r.status===204?null:r.json()}
+function reset(){editId=null;el('form').reset();el('save').textContent='Add student'}
+async function load(){try{const students=await api('/api/students');el('rows').replaceChildren();for(const s of students){const tr=document.createElement('tr');for(const k of ['name','email','course']){const td=document.createElement('td');td.textContent=s[k];tr.append(td)}const td=document.createElement('td');const edit=document.createElement('button');edit.textContent='Edit';edit.onclick=()=>{editId=s.id;for(const k of ['name','email','course'])el(k).value=s[k];el('save').textContent='Save changes'};const del=document.createElement('button');del.textContent='Delete';del.onclick=async()=>{if(!confirm('Delete this student?'))return;try{await api('/api/students/'+s.id,{method:'DELETE'});if(editId===s.id)reset();await load()}catch(e){el('message').textContent=e.message}};td.append(edit,' ',del);tr.append(td);el('rows').append(tr)}}catch(e){el('message').textContent=e.message}}
+el('form').onsubmit=async e=>{e.preventDefault();const data={};for(const k of ['name','email','course'])data[k]=el(k).value;el('save').disabled=true;try{await api('/api/students'+(editId===null?'':'/'+editId),{method:editId===null?'POST':'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});reset();el('message').textContent='Saved successfully';await load()}catch(e){el('message').textContent=e.message}finally{el('save').disabled=false}};
+el('cancel').onclick=reset;el('refresh').onclick=()=>{el('message').textContent='';load()};load();
+</script></html>
