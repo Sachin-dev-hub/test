@@ -23,7 +23,7 @@ services:
       DB_USER: studentapp
       DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
     ports:
-      - "127.0.0.1:8080:8080"
+      - "0.0.0.0:8080:8080"
     depends_on:
       db:
         condition: service_healthy
