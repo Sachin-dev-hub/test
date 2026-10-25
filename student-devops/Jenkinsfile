@@ -1,31 +1,164 @@
 pipeline {
-  agent any
-  options { disableConcurrentBuilds() }
-  environment { IMAGE = "sachinmaskar/student-registration:build-${BUILD_NUMBER}" }
-  stages {
-    stage('Checkout') { steps { checkout scm } }
-    stage('Tests') { steps { sh '''python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-.venv/bin/python -m unittest discover -s tests -v''' } }
-    stage('Build') { steps { sh 'docker build -t "$IMAGE" .' } }
-    stage('Push') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DH_USER', passwordVariable: 'DH_TOKEN')]) {
-          sh '''set +x
-export DOCKER_CONFIG=$(mktemp -d)
-trap 'rm -rf "$DOCKER_CONFIG"' EXIT
-printf '%s' "$DH_TOKEN" | docker login -u "$DH_USER" --password-stdin
-docker push "$IMAGE"'''
-        }
-      }
+    agent any
+
+    options {
+        skipDefaultCheckout(true)
+        disableConcurrentBuilds()
+        timestamps()
+        timeout(time: 30, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '10'))
     }
-    stage('Deploy') {
-      steps {
-        withCredentials([file(credentialsId: 'kind-kubeconfig', variable: 'KUBECONFIG')]) {
-          sh '''kubectl -n student-devops set image deployment/student-app app="$IMAGE"
-kubectl -n student-devops rollout status deployment/student-app --timeout=180s'''
-        }
-      }
+
+    environment {
+        PROJECT_DIR = 'student-devops'
+        IMAGE_REPO = 'sachinmaskar/student-registration'
     }
-  }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+
+                script {
+                    def commit = sh(
+                        script: 'git rev-parse --short=12 HEAD',
+                        returnStdout: true
+                    ).trim()
+
+                    env.IMAGE_TAG = "build-${env.BUILD_NUMBER}-${commit}"
+                    env.IMAGE = "${env.IMAGE_REPO}:${env.IMAGE_TAG}"
+                }
+            }
+        }
+
+        stage('Check prerequisites') {
+            steps {
+                sh '''
+                    set -eu
+
+                    whoami
+                    git --version
+                    python3 --version
+                    docker version
+
+                    test -f "$PROJECT_DIR/Dockerfile"
+                    test -f "$PROJECT_DIR/requirements.txt"
+                    test -d "$PROJECT_DIR/tests"
+
+                    echo "Image to build: $IMAGE"
+                '''
+            }
+        }
+
+        stage('Python tests') {
+            steps {
+                dir("${env.PROJECT_DIR}") {
+                    sh '''
+                        set -eu
+
+                        python3 -m venv .venv
+                        .venv/bin/pip install -r requirements.txt
+                        .venv/bin/python -m unittest discover -s tests -v
+                    '''
+                }
+            }
+        }
+
+        stage('Build image') {
+            steps {
+                dir("${env.PROJECT_DIR}") {
+                    sh '''
+                        set -eu
+
+                        docker build \
+                          --label "org.opencontainers.image.revision=$(git rev-parse HEAD)" \
+                          -t "$IMAGE" .
+                    '''
+                }
+            }
+        }
+
+        stage('Application smoke test') {
+            steps {
+                sh '''
+                    set -eu
+
+                    smoke_dir=$(mktemp -d)
+                    trap 'if [ -f "$smoke_dir/container-id" ]; then
+                              docker rm -f "$(cat "$smoke_dir/container-id")" >/dev/null 2>&1 || true
+                          fi
+                          rm -rf "$smoke_dir"' EXIT
+
+                    docker run -d \
+                      --cidfile "$smoke_dir/container-id" \
+                      "$IMAGE"
+
+                    container_id=$(cat "$smoke_dir/container-id")
+
+                    if ! docker exec -i "$container_id" python - <<'PY'
+import time
+import urllib.request
+
+for attempt in range(30):
+    try:
+        for path in ("/", "/health/live"):
+            with urllib.request.urlopen(
+                "http://127.0.0.1:8080" + path,
+                timeout=2
+            ) as response:
+                assert response.status == 200
+        print("Application page and liveness checks passed")
+        break
+    except Exception:
+        if attempt == 29:
+            raise
+        time.sleep(1)
+PY
+                    then
+                        docker logs "$container_id"
+                        exit 1
+                    fi
+                '''
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub',
+                        usernameVariable: 'DOCKERHUB_USER',
+                        passwordVariable: 'DOCKERHUB_TOKEN'
+                    )
+                ]) {
+                    sh '''
+                        set -eu
+                        set +x
+
+                        DOCKER_CONFIG=$(mktemp -d)
+                        export DOCKER_CONFIG
+
+                        trap 'rm -rf "$DOCKER_CONFIG"' EXIT
+
+                        printf '%s' "$DOCKERHUB_TOKEN" |
+                          docker login \
+                            --username "$DOCKERHUB_USER" \
+                            --password-stdin
+
+                        docker push "$IMAGE"
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Image pushed successfully: ${env.IMAGE}"
+        }
+
+        failure {
+            echo 'Pipeline failed. Open the failed stage and Console Output.'
+        }
+    }
 }

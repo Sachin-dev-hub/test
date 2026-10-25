@@ -1,0 +1,31 @@
+pipeline {
+  agent any
+  options { disableConcurrentBuilds() }
+  environment { IMAGE = "sachinmaskar/student-registration:build-${BUILD_NUMBER}" }
+  stages {
+    stage('Checkout') { steps { checkout scm } }
+    stage('Tests') { steps { sh '''python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python -m unittest discover -s tests -v''' } }
+    stage('Build') { steps { sh 'docker build -t "$IMAGE" .' } }
+    stage('Push') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DH_USER', passwordVariable: 'DH_TOKEN')]) {
+          sh '''set +x
+export DOCKER_CONFIG=$(mktemp -d)
+trap 'rm -rf "$DOCKER_CONFIG"' EXIT
+printf '%s' "$DH_TOKEN" | docker login -u "$DH_USER" --password-stdin
+docker push "$IMAGE"'''
+        }
+      }
+    }
+    stage('Deploy') {
+      steps {
+        withCredentials([file(credentialsId: 'kind-kubeconfig', variable: 'KUBECONFIG')]) {
+          sh '''kubectl -n student-devops set image deployment/student-app app="$IMAGE"
+kubectl -n student-devops rollout status deployment/student-app --timeout=180s'''
+        }
+      }
+    }
+  }
+}
