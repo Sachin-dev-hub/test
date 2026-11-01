@@ -1,0 +1,754 @@
+2026-11-01T14:28:20.6659556Z ##[section]Starting: Job
+2026-11-01T14:28:22.4319181Z ##[section]Starting: Initialize job
+2026-11-01T14:28:22.4328149Z Agent name: 'azureagent'
+2026-11-01T14:28:22.4329724Z Agent machine name: 'worker01'
+2026-11-01T14:28:22.4330485Z Current agent version: '5.281.1'
+2026-11-01T14:28:24.5317935Z Agent running as: 'azureagent'
+2026-11-01T14:28:24.5457389Z Prepare build directory.
+2026-11-01T14:28:24.6534354Z Set build variables.
+2026-11-01T14:28:24.6577805Z Download all required tasks.
+2026-11-01T14:28:26.8634859Z Checking job knob settings.
+2026-11-01T14:28:26.8638454Z    Knob: DockerActionRetries = true Source: $(VSTSAGENT_DOCKER_ACTION_RETRIES) 
+2026-11-01T14:28:26.8639610Z    Knob: UseGitLongPaths = true Source: $(USE_GIT_LONG_PATHS) 
+2026-11-01T14:28:26.8640846Z    Knob: UseNode24withHandlerData = True Source: $(DistributedTask.Agent.UseNode24withHandlerData) 
+2026-11-01T14:28:26.8643156Z    Knob: EnableIssueSourceValidation = true Source: $(ENABLE_ISSUE_SOURCE_VALIDATION) 
+2026-11-01T14:28:26.8643932Z    Knob: AgentEnablePipelineArtifactLargeChunkSize = true Source: $(AGENT_ENABLE_PIPELINEARTIFACT_LARGE_CHUNK_SIZE) 
+2026-11-01T14:28:26.8645929Z    Knob: ContinueAfterCancelProcessTreeKillAttempt = true Source: $(VSTSAGENT_CONTINUE_AFTER_CANCEL_PROCESSTREEKILL_ATTEMPT) 
+2026-11-01T14:28:26.8646477Z    Knob: ProcessHandlerSecureArguments = true Source: $(AZP_75787_ENABLE_NEW_LOGIC) 
+2026-11-01T14:28:26.8646827Z    Knob: ProcessHandlerSecureArguments = false Source: $(AZP_75787_ENABLE_NEW_LOGIC_LOG) 
+2026-11-01T14:28:26.8647163Z    Knob: ProcessHandlerTelemetry = true Source: $(AZP_75787_ENABLE_COLLECT) 
+2026-11-01T14:28:26.8647527Z    Knob: UseNewNodeHandlerTelemetry = True Source: $(DistributedTask.Agent.USENEWNODEHANDLERTELEMETRY) 
+2026-11-01T14:28:26.8647861Z    Knob: ProcessHandlerEnableNewLogic = true Source: $(AZP_75787_ENABLE_NEW_PH_LOGIC) 
+2026-11-01T14:28:26.8648572Z    Knob: EnableResourceMonitorDebugOutput = true Source: $(AZP_ENABLE_RESOURCE_MONITOR_DEBUG_OUTPUT) 
+2026-11-01T14:28:26.8648936Z    Knob: EnableResourceUtilizationWarnings = true Source: $(AZP_ENABLE_RESOURCE_UTILIZATION_WARNINGS) 
+2026-11-01T14:28:26.8649452Z    Knob: IgnoreVSTSTaskLib = true Source: $(AZP_AGENT_IGNORE_VSTSTASKLIB) 
+2026-11-01T14:28:26.8649752Z    Knob: FailJobWhenAgentDies = true Source: $(FAIL_JOB_WHEN_AGENT_DIES) 
+2026-11-01T14:28:26.8649984Z    Knob: EnhancedWorkerCrashHandling = true Source: ${AZP_ENHANCED_WORKER_CRASH_HANDLING} 
+2026-11-01T14:28:26.8650418Z    Knob: CheckForTaskDeprecation = true Source: $(AZP_AGENT_CHECK_FOR_TASK_DEPRECATION) 
+2026-11-01T14:28:26.8650899Z    Knob: CheckIfTaskNodeRunnerIsDeprecated246 = True Source: $(DistributedTask.Agent.CheckIfTaskNodeRunnerIsDeprecated246) 
+2026-11-01T14:28:26.8651286Z    Knob: UseNode20ToStartContainer = True Source: $(DistributedTask.Agent.UseNode20ToStartContainer) 
+2026-11-01T14:28:26.8651645Z    Knob: UseNode24ToStartContainer = True Source: $(DistributedTask.Agent.UseNode24ToStartContainer) 
+2026-11-01T14:28:26.8652037Z    Knob: EnableTimeoutLogFlushing = True Source: $(DistributedTask.Agent.EnableTimeoutLogFlushing) 
+2026-11-01T14:28:26.8652558Z    Knob: LogTaskNameInUserAgent = true Source: $(AZP_AGENT_LOG_TASKNAME_IN_USERAGENT) 
+2026-11-01T14:28:26.8652904Z    Knob: UseFetchFilterInCheckoutTask = true Source: $(AGENT_USE_FETCH_FILTER_IN_CHECKOUT_TASK) 
+2026-11-01T14:28:26.8653292Z    Knob: UseFetchFilterInGitSubmoduleUpdate = True Source: $(DistributedTask.Agent.UseFetchFilterInGitSubmoduleUpdate) 
+2026-11-01T14:28:26.8653837Z    Knob: CaseInsensitiveArtifactMatchingFixEnabled = True Source: $(DistributedTask.Agent.CaseInsensitiveArtifactMatchingFixEnabled) 
+2026-11-01T14:28:26.8654190Z    Knob: Rosetta2Warning = true Source: $(ROSETTA2_WARNING) 
+2026-11-01T14:28:26.8654518Z    Knob: CheckPsModulesLocations = False Source: $(DistributedTask.Agent.CheckPsModulesLocations) 
+2026-11-01T14:28:26.8655568Z    Knob: AddForceCredentialsToGitCheckoutEnhanced = True Source: $(DistributedTask.Agent.AddForceCredentialsToGitCheckoutEnhanced) 
+2026-11-01T14:28:26.8656738Z    Knob: UseLatestTfExe = True Source: $(DistributedTask.Agent.UseLatestTfExe) 
+2026-11-01T14:28:26.8657216Z    Knob: UseSparseCheckoutInCheckoutTask = true Source: $(AGENT_USE_SPARSE_CHECKOUT_IN_CHECKOUT_TASK) 
+2026-11-01T14:28:26.8657709Z    Knob: AgentCDNConnectivityFailWarning = False Source: $(DistributedTask.Agent.AgentCDNConnectivityFailWarning) 
+2026-11-01T14:28:26.8658038Z    Knob: UseEnhancedLogging = true Source: ${AZP_USE_ENHANCED_LOGGING} 
+2026-11-01T14:28:26.8660740Z    Knob: EnableEnhancedContainerDiagnostics = True Source: $(DistributedTask.Agent.EnableEnhancedContainerDiagnostics) 
+2026-11-01T14:28:26.8661433Z    Knob: EnableDockerExecDiagnostics = True Source: $(DistributedTask.Agent.EnableDockerExecDiagnostics) 
+2026-11-01T14:28:26.8661872Z    Knob: UseEnhancedNodeSelection = True Source: $(DistributedTask.Agent.UseEnhancedNodeSelection) 
+2026-11-01T14:28:26.8662545Z    Knob: EnablePluginExternalOutputFiltering = True Source: $(DistributedTask.Agent.EnablePluginExternalOutputFiltering) 
+2026-11-01T14:28:26.8662771Z Finished checking job knob settings.
+2026-11-01T14:28:26.9085088Z Start tracking orphan processes.
+2026-11-01T14:28:27.0007762Z ##[section]Finishing: Initialize job
+2026-11-01T14:28:27.0276718Z ##[section]Async Command Start: DetectDockerContainer
+2026-11-01T14:28:27.0277978Z ##[section]Async Command End: DetectDockerContainer
+2026-11-01T14:28:27.0280600Z ##[section]Async Command Start: DetectDockerContainer
+2026-11-01T14:28:27.0280948Z ##[section]Async Command End: DetectDockerContainer
+2026-11-01T14:28:27.0673075Z ##[section]Starting: Checkout test.git@main to s
+2026-11-01T14:28:27.0908911Z ==============================================================================
+2026-11-01T14:28:27.0910751Z Task         : Get sources
+2026-11-01T14:28:27.0911367Z Description  : Get sources from a repository. Supports Git, TfsVC, and SVN repositories.
+2026-11-01T14:28:27.0911644Z Version      : 1.0.0
+2026-11-01T14:28:27.0912125Z Author       : Microsoft
+2026-11-01T14:28:27.0912861Z Help         : [More Information](https://go.microsoft.com/fwlink/?LinkId=798199)
+2026-11-01T14:28:27.0913082Z ==============================================================================
+2026-11-01T14:28:29.9307301Z Syncing repository: test.git (Git)
+2026-11-01T14:28:29.9334745Z ##[command]git version
+2026-11-01T14:28:29.9380906Z git version 2.43.0
+2026-11-01T14:28:29.9386279Z ##[command]git config --get remote.origin.url
+2026-11-01T14:28:29.9647933Z ##[command]git clean -ffdx
+2026-11-01T14:28:29.9659526Z ##[command]git reset --hard HEAD
+2026-11-01T14:28:29.9694851Z HEAD is now at 48c2eba Updated app.py, new line added at last
+2026-11-01T14:28:29.9698028Z ##[command]git sparse-checkout disable
+2026-11-01T14:28:29.9736761Z ##[command]git config gc.auto 0
+2026-11-01T14:28:29.9749564Z ##[command]git config core.longpaths true
+2026-11-01T14:28:29.9773773Z ##[command]git config --get-all http.https://SachinEnterprise@dev.azure.com/SachinEnterprise/SachinProduction/_git/test.git.extraheader
+2026-11-01T14:28:29.9796772Z ##[command]git config --get-all http.extraheader
+2026-11-01T14:28:29.9811485Z ##[command]git config --get-regexp .*extraheader
+2026-11-01T14:28:29.9818851Z ##[command]git config --get-all http.proxy
+2026-11-01T14:28:29.9846517Z ##[command]git config http.version HTTP/1.1
+2026-11-01T14:28:29.9882735Z ##[command]git config --get-all remote.origin.promisor
+2026-11-01T14:28:29.9913951Z ##[command]git config --get-all remote.origin.partialclonefilter
+2026-11-01T14:28:29.9950717Z ##[command]git --config-env=http.extraheader=env_var_http.extraheader fetch --force --tags --prune --prune-tags --progress --no-recurse-submodules origin --depth=1  +48c2eba8626d7b4e893c980e8d8eb6c29596acab:refs/remotes/origin/48c2eba8626d7b4e893c980e8d8eb6c29596acab
+2026-11-01T14:28:29.9972990Z remote: Azure Repos        
+2026-11-01T14:28:29.9973458Z remote: We noticed you're using an older version of Git. For the best experience, upgrade to a newer version.        
+2026-11-01T14:28:29.9973879Z remote: 
+2026-11-01T14:28:29.9974216Z remote: Found 0 objects to send. (0 ms)        
+2026-11-01T14:28:30.9815835Z ##[command]git --config-env=http.extraheader=env_var_http.extraheader fetch --force --tags --prune --prune-tags --progress --no-recurse-submodules origin --depth=1  +48c2eba8626d7b4e893c980e8d8eb6c29596acab
+2026-11-01T14:28:30.9829684Z remote: Azure Repos        
+2026-11-01T14:28:30.9834639Z remote: We noticed you're using an older version of Git. For the best experience, upgrade to a newer version.        
+2026-11-01T14:28:30.9835056Z remote: 
+2026-11-01T14:28:30.9835401Z remote: Found 0 objects to send. (0 ms)        
+2026-11-01T14:28:30.9840457Z From https://dev.azure.com/SachinEnterprise/SachinProduction/_git/test
+2026-11-01T14:28:30.9841075Z  * branch            48c2eba8626d7b4e893c980e8d8eb6c29596acab -> FETCH_HEAD
+2026-11-01T14:28:31.8451797Z ##[command]git checkout --progress --force refs/remotes/origin/48c2eba8626d7b4e893c980e8d8eb6c29596acab
+2026-11-01T14:28:31.8477249Z HEAD is now at 48c2eba Updated app.py, new line added at last
+2026-11-01T14:28:31.8626198Z ##[section]Finishing: Checkout test.git@main to s
+2026-11-01T14:28:31.9005146Z ##[section]Starting: Build and Push Docker Image
+2026-11-01T14:28:31.9041884Z ==============================================================================
+2026-11-01T14:28:31.9042149Z Task         : Docker
+2026-11-01T14:28:31.9042315Z Description  : Build or push Docker images, login or logout, start or stop containers, or run a Docker command
+2026-11-01T14:28:31.9042559Z Version      : 2.282.0
+2026-11-01T14:28:31.9042721Z Author       : Microsoft Corporation
+2026-11-01T14:28:31.9042876Z Help         : https://aka.ms/azpipes-docker-tsg
+2026-11-01T14:28:31.9043060Z ==============================================================================
+2026-11-01T14:28:35.1668433Z [Host] Selected Node version: Node24 (Strategy: Node24Strategy)
+2026-11-01T14:28:37.5034130Z [command]/usr/bin/docker pull python:3.12-slim
+2026-11-01T14:29:00.5105037Z 3.12-slim: Pulling from library/python
+2026-11-01T14:29:00.5130136Z acca7542dfc7: Pulling fs layer
+2026-11-01T14:29:00.5132565Z 3eb771151506: Pulling fs layer
+2026-11-01T14:29:00.5133693Z 6fc242d221a6: Pulling fs layer
+2026-11-01T14:29:00.5134473Z f574edac59d9: Pulling fs layer
+2026-11-01T14:29:00.5135440Z acca7542dfc7: Download complete
+2026-11-01T14:29:00.5136189Z bccc6082da9b: Download complete
+2026-11-01T14:29:00.5137121Z 3eb771151506: Download complete
+2026-11-01T14:29:00.5137810Z 5c4e36918e20: Download complete
+2026-11-01T14:29:00.5138698Z f574edac59d9: Download complete
+2026-11-01T14:29:00.5139360Z 6fc242d221a6: Download complete
+2026-11-01T14:29:00.5140247Z 6fc242d221a6: Pull complete
+2026-11-01T14:29:00.5140916Z 3eb771151506: Pull complete
+2026-11-01T14:29:00.5141798Z f574edac59d9: Pull complete
+2026-11-01T14:29:00.5143217Z acca7542dfc7: Pull complete
+2026-11-01T14:29:00.5143867Z Digest: sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159
+2026-11-01T14:29:00.5144926Z Status: Downloaded newer image for python:3.12-slim
+2026-11-01T14:29:00.5147288Z docker.io/library/python:3.12-slim
+2026-11-01T14:29:00.5151509Z [command]/usr/bin/docker inspect python:3.12-slim
+2026-11-01T14:29:00.7772142Z [
+2026-11-01T14:29:00.7774353Z     {
+2026-11-01T14:29:00.7775549Z         "Id": "sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159",
+2026-11-01T14:29:00.7776348Z         "RepoTags": [
+2026-11-01T14:29:00.7798594Z             "python:3.12-slim"
+2026-11-01T14:29:00.7799275Z         ],
+2026-11-01T14:29:00.7799738Z         "RepoDigests": [
+2026-11-01T14:29:00.7800184Z             "python@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159"
+2026-11-01T14:29:00.7800603Z         ],
+2026-11-01T14:29:00.7801009Z         "Comment": "buildkit.dockerfile.v0",
+2026-11-01T14:29:00.7801553Z         "Created": "2026-10-28T02:03:39.583192962Z",
+2026-11-01T14:29:00.7802299Z         "Config": {
+2026-11-01T14:29:00.7802960Z             "Env": [
+2026-11-01T14:29:00.7803698Z                 "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+2026-11-01T14:29:00.7804868Z                 "LANG=C.UTF-8",
+2026-11-01T14:29:00.7805303Z                 "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+2026-11-01T14:29:00.7807191Z                 "PYTHON_VERSION=3.12.16",
+2026-11-01T14:29:00.7807889Z                 "PYTHON_SHA256=b5796915dc45ff745cfb4e990a7e7c93d6f546328a102ce31448d69ebc37575c"
+2026-11-01T14:29:00.7808410Z             ],
+2026-11-01T14:29:00.7808902Z             "Cmd": [
+2026-11-01T14:29:00.7809460Z                 "python3"
+2026-11-01T14:29:00.7810004Z             ]
+2026-11-01T14:29:00.7810531Z         },
+2026-11-01T14:29:00.7811107Z         "Architecture": "amd64",
+2026-11-01T14:29:00.7811682Z         "Os": "linux",
+2026-11-01T14:29:00.7812276Z         "Size": 43284989,
+2026-11-01T14:29:00.7812894Z         "RootFS": {
+2026-11-01T14:29:00.7813529Z             "Type": "layers",
+2026-11-01T14:29:00.7814156Z             "Layers": [
+2026-11-01T14:29:00.7814885Z                 "sha256:a5d6d345f6afa08d7c31272055746d60a838b290bfcc82c0a23e8e984d61a933",
+2026-11-01T14:29:00.7816230Z                 "sha256:fab99bd4639aec48a77ec4d2e3564c0907e0e1e962bbf773219a0b503a168955",
+2026-11-01T14:29:00.7817328Z                 "sha256:bca572b9549074f7cbc5f2d9d29f589038ff21c5f68cef2965167a33f177a9c0",
+2026-11-01T14:29:00.7819532Z                 "sha256:cae4cb2b5e819765b847e67faa443b377607452f2ec949d142cad15d9d7ea0b3"
+2026-11-01T14:29:00.7820261Z             ]
+2026-11-01T14:29:00.7820793Z         },
+2026-11-01T14:29:00.7821430Z         "Metadata": {
+2026-11-01T14:29:00.7822115Z             "LastTagTime": "2026-11-01T14:29:00.368299748Z"
+2026-11-01T14:29:00.7822758Z         },
+2026-11-01T14:29:00.7823363Z         "Descriptor": {
+2026-11-01T14:29:00.7824037Z             "mediaType": "application/vnd.oci.image.index.v1+json",
+2026-11-01T14:29:00.7824779Z             "digest": "sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159",
+2026-11-01T14:29:00.7825428Z             "size": 10373
+2026-11-01T14:29:00.7826622Z         }
+2026-11-01T14:29:00.7827278Z     }
+2026-11-01T14:29:00.7827894Z ]
+2026-11-01T14:29:00.8011786Z [command]/usr/bin/docker build -f /home/azureagent/myagent/_work/1/s/student-devops/Dockerfile --label com.azure.dev.image.system.teamfoundationcollectionuri=https://dev.azure.com/SachinEnterprise/ --label com.azure.dev.image.system.teamproject=SachinProduction --label com.azure.dev.image.build.repository.name=test.git --label com.azure.dev.image.build.sourceversion=48c2eba8626d7b4e893c980e8d8eb6c29596acab --label com.azure.dev.image.build.repository.uri=https://SachinEnterprise@dev.azure.com/SachinEnterprise/SachinProduction/_git/test.git --label com.azure.dev.image.build.sourcebranchname=main --label com.azure.dev.image.build.definitionname=test.git (2) --label com.azure.dev.image.build.buildnumber=20261101.6 --label com.azure.dev.image.build.builduri=vstfs:///Build/Build/6 --label image.base.ref.name=python:3.12-slim --label image.base.digest=sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159 -t ***/student-registration:6 -t ***/student-registration:latest /home/azureagent/myagent/_work/1/s/student-devops
+2026-11-01T14:29:00.8997669Z DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+2026-11-01T14:29:00.9031554Z             Install the buildx component to build images with BuildKit:
+2026-11-01T14:29:00.9047582Z             https://docs.docker.com/go/buildx/
+2026-11-01T14:29:00.9048354Z 
+2026-11-01T14:29:00.9579295Z Sending build context to Docker daemon  132.1kB
+2026-11-01T14:29:00.9583735Z 
+2026-11-01T14:29:00.9924754Z Step 1/20 : FROM python:3.12-slim
+2026-11-01T14:29:01.0100191Z  ---> aa943ce41142
+2026-11-01T14:29:01.0159897Z Step 2/20 : ENV PYTHONDONTWRITEBYTECODE=1     PYTHONUNBUFFERED=1
+2026-11-01T14:29:02.4966058Z  ---> Running in 9a28102371e8
+2026-11-01T14:29:03.9011066Z  ---> Removed intermediate container 9a28102371e8
+2026-11-01T14:29:03.9028124Z  ---> 9cab4e6697d8
+2026-11-01T14:29:03.9028869Z Step 3/20 : WORKDIR /app
+2026-11-01T14:29:04.3554450Z  ---> Running in 07a295e46904
+2026-11-01T14:29:05.9063636Z  ---> Removed intermediate container 07a295e46904
+2026-11-01T14:29:05.9064418Z  ---> 65afc10e4aac
+2026-11-01T14:29:05.9071709Z Step 4/20 : COPY requirements.txt .
+2026-11-01T14:29:07.8264444Z  ---> 68b1ec75da57
+2026-11-01T14:29:07.8270202Z Step 5/20 : RUN pip install --no-cache-dir -r requirements.txt     && useradd --uid 10001 --create-home appuser
+2026-11-01T14:29:08.2397123Z  ---> Running in e4d19e94687b
+2026-11-01T14:29:13.1848805Z Collecting Flask==3.1.2 (from -r requirements.txt (line 1))
+2026-11-01T14:29:13.2757664Z   Downloading flask-3.1.2-py3-none-any.whl.metadata (3.2 kB)
+2026-11-01T14:29:13.7674729Z Collecting gunicorn==23.0.0 (from -r requirements.txt (line 2))
+2026-11-01T14:29:13.7687109Z   Downloading gunicorn-23.0.0-py3-none-any.whl.metadata (4.4 kB)
+2026-11-01T14:29:13.7687899Z Collecting psycopg==3.2.10 (from psycopg[binary]==3.2.10->-r requirements.txt (line 3))
+2026-11-01T14:29:13.7943669Z   Downloading psycopg-3.2.10-py3-none-any.whl.metadata (4.6 kB)
+2026-11-01T14:29:13.8463354Z Collecting blinker>=1.9.0 (from Flask==3.1.2->-r requirements.txt (line 1))
+2026-11-01T14:29:13.8608916Z   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+2026-11-01T14:29:13.9336297Z Collecting click>=8.1.3 (from Flask==3.1.2->-r requirements.txt (line 1))
+2026-11-01T14:29:13.9475785Z   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-01T14:29:13.9687896Z Collecting itsdangerous>=2.2.0 (from Flask==3.1.2->-r requirements.txt (line 1))
+2026-11-01T14:29:13.9832999Z   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+2026-11-01T14:29:14.0300882Z Collecting jinja2>=3.1.2 (from Flask==3.1.2->-r requirements.txt (line 1))
+2026-11-01T14:29:14.0614219Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+2026-11-01T14:29:14.1771061Z Collecting markupsafe>=2.1.1 (from Flask==3.1.2->-r requirements.txt (line 1))
+2026-11-01T14:29:14.1907795Z   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+2026-11-01T14:29:14.2411542Z Collecting werkzeug>=3.1.0 (from Flask==3.1.2->-r requirements.txt (line 1))
+2026-11-01T14:29:14.2607080Z   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+2026-11-01T14:29:14.3052882Z Collecting packaging (from gunicorn==23.0.0->-r requirements.txt (line 2))
+2026-11-01T14:29:14.3180959Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-01T14:29:14.3668436Z Collecting typing-extensions>=4.6 (from psycopg==3.2.10->psycopg[binary]==3.2.10->-r requirements.txt (line 3))
+2026-11-01T14:29:14.3795645Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-11-01T14:29:14.9088412Z Collecting psycopg-binary==3.2.10 (from psycopg[binary]==3.2.10->-r requirements.txt (line 3))
+2026-11-01T14:29:14.9795472Z   Downloading psycopg_binary-3.2.10-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.0 kB)
+2026-11-01T14:29:15.0359053Z Downloading flask-3.1.2-py3-none-any.whl (103 kB)
+2026-11-01T14:29:15.0955906Z Downloading gunicorn-23.0.0-py3-none-any.whl (85 kB)
+2026-11-01T14:29:15.2227180Z Downloading psycopg-3.2.10-py3-none-any.whl (206 kB)
+2026-11-01T14:29:15.4928577Z Downloading psycopg_binary-3.2.10-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.4 MB)
+2026-11-01T14:29:16.9359123Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 3.0 MB/s eta 0:00:00
+2026-11-01T14:29:16.9359906Z Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+2026-11-01T14:29:16.9487955Z Downloading click-8.5.0-py3-none-any.whl (125 kB)
+2026-11-01T14:29:17.0057844Z Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+2026-11-01T14:29:17.0281618Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+2026-11-01T14:29:17.0778716Z Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+2026-11-01T14:29:17.0982836Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-11-01T14:29:17.1386214Z Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+2026-11-01T14:29:17.2390723Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-01T14:29:17.3198904Z Installing collected packages: typing-extensions, psycopg-binary, packaging, markupsafe, itsdangerous, click, blinker, werkzeug, psycopg, jinja2, gunicorn, Flask
+2026-11-01T14:29:19.8368780Z Successfully installed Flask-3.1.2 blinker-1.9.0 click-8.5.0 gunicorn-23.0.0 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 packaging-26.3 psycopg-3.2.10 psycopg-binary-3.2.10 typing-extensions-4.16.0 werkzeug-3.1.9
+2026-11-01T14:29:19.8445401Z [91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+2026-11-01T14:29:20.0740400Z [0m[91m
+2026-11-01T14:29:20.0741205Z [notice] A new release of pip is available: 25.0.1 -> 26.2.2
+2026-11-01T14:29:20.0743389Z [notice] To update, run: pip install --upgrade pip
+2026-11-01T14:29:26.3770458Z [0m ---> Removed intermediate container e4d19e94687b
+2026-11-01T14:29:26.3770984Z  ---> 86812b6a8db0
+2026-11-01T14:29:26.3780722Z Step 6/20 : COPY --chown=appuser:appuser app/ .
+2026-11-01T14:29:28.3373456Z  ---> 4ef4eccd2bd7
+2026-11-01T14:29:28.3376864Z Step 7/20 : USER 10001
+2026-11-01T14:29:28.7262576Z  ---> Running in d4c3060caf10
+2026-11-01T14:29:30.2962128Z  ---> Removed intermediate container d4c3060caf10
+2026-11-01T14:29:30.2967964Z  ---> 68d4b4857ad4
+2026-11-01T14:29:30.2968607Z Step 8/20 : EXPOSE 8080
+2026-11-01T14:29:30.6891953Z  ---> Running in 5bf6cfe9f7a4
+2026-11-01T14:29:32.0266206Z  ---> Removed intermediate container 5bf6cfe9f7a4
+2026-11-01T14:29:32.0277783Z  ---> 12470ae2e8fc
+2026-11-01T14:29:32.0278374Z Step 9/20 : CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "--access-logfile", "-", "--error-logfile", "-", "app:app"]
+2026-11-01T14:29:32.4224528Z  ---> Running in 8438c05f9ab9
+2026-11-01T14:29:33.9234642Z  ---> Removed intermediate container 8438c05f9ab9
+2026-11-01T14:29:33.9235239Z  ---> 7cc54960e0fc
+2026-11-01T14:29:33.9236344Z Step 10/20 : LABEL com.azure.dev.image.build.buildnumber=20261101.6
+2026-11-01T14:29:34.2834143Z  ---> Running in 1d9989a150ae
+2026-11-01T14:29:35.5558347Z  ---> Removed intermediate container 1d9989a150ae
+2026-11-01T14:29:35.5559367Z  ---> f6c2369df341
+2026-11-01T14:29:35.5559956Z Step 11/20 : LABEL com.azure.dev.image.build.builduri=vstfs:///Build/Build/6
+2026-11-01T14:29:35.9560989Z  ---> Running in 22877bfc355e
+2026-11-01T14:29:37.4310674Z  ---> Removed intermediate container 22877bfc355e
+2026-11-01T14:29:37.4313024Z  ---> 407e3cba0d82
+2026-11-01T14:29:37.4313544Z Step 12/20 : LABEL com.azure.dev.image.build.definitionname=test.git (2)
+2026-11-01T14:29:37.8181421Z  ---> Running in 0bf40f218a79
+2026-11-01T14:29:39.2469333Z  ---> Removed intermediate container 0bf40f218a79
+2026-11-01T14:29:39.2515303Z  ---> 6cb913044d56
+2026-11-01T14:29:39.2534769Z Step 13/20 : LABEL com.azure.dev.image.build.repository.name=test.git
+2026-11-01T14:29:39.6924843Z  ---> Running in e6615673e2f2
+2026-11-01T14:29:41.0957782Z  ---> Removed intermediate container e6615673e2f2
+2026-11-01T14:29:41.1020043Z  ---> 5da1677f39b5
+2026-11-01T14:29:41.1024871Z Step 14/20 : LABEL com.azure.dev.image.build.repository.uri=https://SachinEnterprise@dev.azure.com/SachinEnterprise/SachinProduction/_git/test.git
+2026-11-01T14:29:41.5074273Z  ---> Running in 5e62ad4e8dd9
+2026-11-01T14:29:42.9429766Z  ---> Removed intermediate container 5e62ad4e8dd9
+2026-11-01T14:29:42.9443265Z  ---> 2384eab287ec
+2026-11-01T14:29:42.9458485Z Step 15/20 : LABEL com.azure.dev.image.build.sourcebranchname=main
+2026-11-01T14:29:43.3939829Z  ---> Running in d951a31d34b3
+2026-11-01T14:29:44.8429793Z  ---> Removed intermediate container d951a31d34b3
+2026-11-01T14:29:44.8431828Z  ---> b425faa677e4
+2026-11-01T14:29:44.8433710Z Step 16/20 : LABEL com.azure.dev.image.build.sourceversion=48c2eba8626d7b4e893c980e8d8eb6c29596acab
+2026-11-01T14:29:45.2288902Z  ---> Running in 06a5165bc7fd
+2026-11-01T14:29:46.7257591Z  ---> Removed intermediate container 06a5165bc7fd
+2026-11-01T14:29:46.7261371Z  ---> 13ca9910cf74
+2026-11-01T14:29:46.7262947Z Step 17/20 : LABEL com.azure.dev.image.system.teamfoundationcollectionuri=https://dev.azure.com/SachinEnterprise/
+2026-11-01T14:29:47.1538074Z  ---> Running in cb39ed68a6cb
+2026-11-01T14:29:48.3557244Z  ---> Removed intermediate container cb39ed68a6cb
+2026-11-01T14:29:48.3558081Z  ---> 6e35f7bbc372
+2026-11-01T14:29:48.3558618Z Step 18/20 : LABEL com.azure.dev.image.system.teamproject=SachinProduction
+2026-11-01T14:29:48.8446619Z  ---> Running in 9e1e750fb4e2
+2026-11-01T14:29:50.3066792Z  ---> Removed intermediate container 9e1e750fb4e2
+2026-11-01T14:29:50.3067891Z  ---> 91416274bc60
+2026-11-01T14:29:50.3068315Z Step 19/20 : LABEL image.base.digest=sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159
+2026-11-01T14:29:50.7170370Z  ---> Running in 17361b477fd8
+2026-11-01T14:29:52.0797504Z  ---> Removed intermediate container 17361b477fd8
+2026-11-01T14:29:52.0808350Z  ---> 4caca696742b
+2026-11-01T14:29:52.0809130Z Step 20/20 : LABEL image.base.ref.name=python:3.12-slim
+2026-11-01T14:29:52.4665201Z  ---> Running in e3f47673f82d
+2026-11-01T14:29:54.0006944Z  ---> Removed intermediate container e3f47673f82d
+2026-11-01T14:29:54.0007269Z  ---> 4ae4c0ec26f3
+2026-11-01T14:29:54.0923352Z Successfully built 4ae4c0ec26f3
+2026-11-01T14:29:54.1498867Z Successfully tagged ***/student-registration:6
+2026-11-01T14:29:54.2051290Z Successfully tagged ***/student-registration:latest
+2026-11-01T14:29:54.2156086Z 
+2026-11-01T14:29:54.2393712Z [command]/usr/bin/docker images
+2026-11-01T14:29:54.2817541Z [command]/usr/bin/docker push ***/student-registration:6
+2026-11-01T14:29:54.3793231Z WARNING: This output is designed for human readability. For machine-readable output, please use --format.
+2026-11-01T14:29:54.3822407Z IMAGE                                      ID             DISK USAGE   CONTENT SIZE   EXTRA
+2026-11-01T14:29:54.3858233Z python:3.12-slim                           aa943ce41142        180MB         45.5MB        
+2026-11-01T14:29:54.3884120Z ***/student-registration:6        4ae4c0ec26f3        207MB         50.6MB        
+2026-11-01T14:29:54.3929516Z ***/student-registration:latest   4ae4c0ec26f3        207MB         50.6MB        
+2026-11-01T14:29:54.3976821Z 
+2026-11-01T14:29:54.3979636Z The push refers to repository [docker.io/***/student-registration]
+2026-11-01T14:29:54.5413351Z 6fc242d221a6: Waiting
+2026-11-01T14:29:54.5415671Z 3eb771151506: Waiting
+2026-11-01T14:29:54.5416713Z 5158630b9125: Waiting
+2026-11-01T14:29:54.5417454Z f574edac59d9: Waiting
+2026-11-01T14:29:54.5418166Z 655a4c3685fb: Waiting
+2026-11-01T14:29:54.5418880Z 43ff823d831e: Waiting
+2026-11-01T14:29:54.5599178Z 9093d72686e7: Waiting
+2026-11-01T14:29:54.5600578Z acca7542dfc7: Waiting
+2026-11-01T14:29:54.6406960Z 5158630b9125: Waiting
+2026-11-01T14:29:54.6442270Z f574edac59d9: Waiting
+2026-11-01T14:29:54.6443411Z 655a4c3685fb: Waiting
+2026-11-01T14:29:54.6444290Z 43ff823d831e: Waiting
+2026-11-01T14:29:54.6467799Z 9093d72686e7: Waiting
+2026-11-01T14:29:54.6468785Z acca7542dfc7: Waiting
+2026-11-01T14:29:54.6469476Z 6fc242d221a6: Waiting
+2026-11-01T14:29:54.6470884Z 3eb771151506: Waiting
+2026-11-01T14:29:54.7434075Z 655a4c3685fb: Waiting
+2026-11-01T14:29:54.7450459Z 43ff823d831e: Waiting
+2026-11-01T14:29:54.7451259Z 9093d72686e7: Waiting
+2026-11-01T14:29:54.7451802Z acca7542dfc7: Waiting
+2026-11-01T14:29:54.7452331Z 6fc242d221a6: Waiting
+2026-11-01T14:29:54.7452826Z 3eb771151506: Waiting
+2026-11-01T14:29:54.7453311Z 5158630b9125: Waiting
+2026-11-01T14:29:54.7500836Z f574edac59d9: Waiting
+2026-11-01T14:29:54.8367179Z acca7542dfc7: Waiting
+2026-11-01T14:29:54.8398958Z 6fc242d221a6: Waiting
+2026-11-01T14:29:54.8438660Z 3eb771151506: Waiting
+2026-11-01T14:29:54.8468938Z 5158630b9125: Waiting
+2026-11-01T14:29:54.8490733Z f574edac59d9: Waiting
+2026-11-01T14:29:54.8558370Z 655a4c3685fb: Waiting
+2026-11-01T14:29:54.8559630Z 43ff823d831e: Waiting
+2026-11-01T14:29:54.8560823Z 9093d72686e7: Waiting
+2026-11-01T14:29:54.9400141Z 5158630b9125: Waiting
+2026-11-01T14:29:54.9428959Z f574edac59d9: Waiting
+2026-11-01T14:29:54.9431727Z 655a4c3685fb: Waiting
+2026-11-01T14:29:54.9433404Z 43ff823d831e: Waiting
+2026-11-01T14:29:54.9434378Z 9093d72686e7: Waiting
+2026-11-01T14:29:54.9435074Z acca7542dfc7: Waiting
+2026-11-01T14:29:54.9435831Z 6fc242d221a6: Waiting
+2026-11-01T14:29:54.9436517Z 3eb771151506: Waiting
+2026-11-01T14:29:55.0340111Z f574edac59d9: Waiting
+2026-11-01T14:29:55.0344087Z 655a4c3685fb: Waiting
+2026-11-01T14:29:55.0344417Z 43ff823d831e: Waiting
+2026-11-01T14:29:55.0344526Z 9093d72686e7: Waiting
+2026-11-01T14:29:55.0344934Z acca7542dfc7: Waiting
+2026-11-01T14:29:55.0346175Z 6fc242d221a6: Waiting
+2026-11-01T14:29:55.0346309Z 3eb771151506: Waiting
+2026-11-01T14:29:55.0346406Z 5158630b9125: Waiting
+2026-11-01T14:29:55.1409633Z 655a4c3685fb: Waiting
+2026-11-01T14:29:55.1416144Z 43ff823d831e: Waiting
+2026-11-01T14:29:55.1417845Z 9093d72686e7: Waiting
+2026-11-01T14:29:55.1418726Z acca7542dfc7: Waiting
+2026-11-01T14:29:55.1419044Z 6fc242d221a6: Waiting
+2026-11-01T14:29:55.1419294Z 3eb771151506: Waiting
+2026-11-01T14:29:55.1419544Z 5158630b9125: Waiting
+2026-11-01T14:29:55.1419793Z f574edac59d9: Waiting
+2026-11-01T14:29:55.2498448Z 3eb771151506: Waiting
+2026-11-01T14:29:55.2501339Z 5158630b9125: Waiting
+2026-11-01T14:29:55.2502150Z f574edac59d9: Waiting
+2026-11-01T14:29:55.2502718Z 655a4c3685fb: Waiting
+2026-11-01T14:29:55.2503336Z 43ff823d831e: Waiting
+2026-11-01T14:29:55.2503951Z 9093d72686e7: Waiting
+2026-11-01T14:29:55.2547335Z acca7542dfc7: Waiting
+2026-11-01T14:29:55.2569554Z 6fc242d221a6: Waiting
+2026-11-01T14:29:55.3392580Z 6fc242d221a6: Waiting
+2026-11-01T14:29:55.3410525Z 3eb771151506: Waiting
+2026-11-01T14:29:55.3411304Z 5158630b9125: Waiting
+2026-11-01T14:29:55.3411625Z f574edac59d9: Waiting
+2026-11-01T14:29:55.3411905Z 655a4c3685fb: Waiting
+2026-11-01T14:29:55.3412180Z 43ff823d831e: Waiting
+2026-11-01T14:29:55.3412486Z 9093d72686e7: Waiting
+2026-11-01T14:29:55.3412770Z acca7542dfc7: Waiting
+2026-11-01T14:29:55.4354609Z 5158630b9125: Waiting
+2026-11-01T14:29:55.4355073Z f574edac59d9: Waiting
+2026-11-01T14:29:55.4355189Z 655a4c3685fb: Waiting
+2026-11-01T14:29:55.4355277Z 43ff823d831e: Waiting
+2026-11-01T14:29:55.4355363Z 9093d72686e7: Waiting
+2026-11-01T14:29:55.4355446Z acca7542dfc7: Waiting
+2026-11-01T14:29:55.4355532Z 6fc242d221a6: Waiting
+2026-11-01T14:29:55.4355629Z 3eb771151506: Waiting
+2026-11-01T14:29:55.5357280Z acca7542dfc7: Waiting
+2026-11-01T14:29:55.5363554Z 6fc242d221a6: Waiting
+2026-11-01T14:29:55.5363845Z 3eb771151506: Waiting
+2026-11-01T14:29:55.5364106Z 5158630b9125: Waiting
+2026-11-01T14:29:55.5364380Z f574edac59d9: Waiting
+2026-11-01T14:29:55.5364633Z 655a4c3685fb: Waiting
+2026-11-01T14:29:55.5364884Z 43ff823d831e: Waiting
+2026-11-01T14:29:55.5365135Z 9093d72686e7: Waiting
+2026-11-01T14:29:55.6377444Z 3eb771151506: Waiting
+2026-11-01T14:29:55.6377769Z 5158630b9125: Waiting
+2026-11-01T14:29:55.6377885Z f574edac59d9: Waiting
+2026-11-01T14:29:55.6378099Z 655a4c3685fb: Waiting
+2026-11-01T14:29:55.6378196Z 43ff823d831e: Waiting
+2026-11-01T14:29:55.6378287Z 9093d72686e7: Waiting
+2026-11-01T14:29:55.6378374Z acca7542dfc7: Waiting
+2026-11-01T14:29:55.6378461Z 6fc242d221a6: Waiting
+2026-11-01T14:29:55.7369681Z 43ff823d831e: Waiting
+2026-11-01T14:29:55.7389609Z 9093d72686e7: Waiting
+2026-11-01T14:29:55.7391862Z acca7542dfc7: Waiting
+2026-11-01T14:29:55.7392233Z 6fc242d221a6: Waiting
+2026-11-01T14:29:55.7392591Z 3eb771151506: Waiting
+2026-11-01T14:29:55.7392933Z 5158630b9125: Waiting
+2026-11-01T14:29:55.7393307Z f574edac59d9: Waiting
+2026-11-01T14:29:55.7393656Z 655a4c3685fb: Waiting
+2026-11-01T14:29:55.8540274Z acca7542dfc7: Waiting
+2026-11-01T14:29:55.8541880Z 6fc242d221a6: Waiting
+2026-11-01T14:29:55.8542256Z 3eb771151506: Waiting
+2026-11-01T14:29:55.8542591Z 5158630b9125: Waiting
+2026-11-01T14:29:55.8542947Z f574edac59d9: Waiting
+2026-11-01T14:29:55.8544270Z 655a4c3685fb: Waiting
+2026-11-01T14:29:55.8545537Z 43ff823d831e: Waiting
+2026-11-01T14:29:55.8545895Z 9093d72686e7: Waiting
+2026-11-01T14:29:55.9350532Z 43ff823d831e: Waiting
+2026-11-01T14:29:55.9353656Z 9093d72686e7: Waiting
+2026-11-01T14:29:55.9356473Z acca7542dfc7: Waiting
+2026-11-01T14:29:55.9366045Z 6fc242d221a6: Waiting
+2026-11-01T14:29:55.9371611Z 3eb771151506: Waiting
+2026-11-01T14:29:55.9372105Z 5158630b9125: Waiting
+2026-11-01T14:29:55.9372529Z f574edac59d9: Waiting
+2026-11-01T14:29:55.9372964Z 655a4c3685fb: Waiting
+2026-11-01T14:29:56.0424621Z 6fc242d221a6: Waiting
+2026-11-01T14:29:56.0452825Z 3eb771151506: Waiting
+2026-11-01T14:29:56.0471993Z 5158630b9125: Waiting
+2026-11-01T14:29:56.0527682Z f574edac59d9: Waiting
+2026-11-01T14:29:56.0529605Z 655a4c3685fb: Waiting
+2026-11-01T14:29:56.0530274Z 43ff823d831e: Waiting
+2026-11-01T14:29:56.0547388Z 9093d72686e7: Waiting
+2026-11-01T14:29:56.0547667Z acca7542dfc7: Waiting
+2026-11-01T14:29:56.1375542Z 9093d72686e7: Waiting
+2026-11-01T14:29:56.1377988Z acca7542dfc7: Waiting
+2026-11-01T14:29:56.1427716Z 6fc242d221a6: Waiting
+2026-11-01T14:29:56.1430141Z 3eb771151506: Waiting
+2026-11-01T14:29:56.1431431Z 5158630b9125: Waiting
+2026-11-01T14:29:56.1432049Z f574edac59d9: Waiting
+2026-11-01T14:29:56.1432463Z 655a4c3685fb: Waiting
+2026-11-01T14:29:56.1432829Z 43ff823d831e: Waiting
+2026-11-01T14:29:56.2396796Z 5158630b9125: Waiting
+2026-11-01T14:29:56.2397483Z f574edac59d9: Waiting
+2026-11-01T14:29:56.2555755Z 655a4c3685fb: Waiting
+2026-11-01T14:29:56.2560539Z 43ff823d831e: Waiting
+2026-11-01T14:29:56.2614059Z 9093d72686e7: Waiting
+2026-11-01T14:29:56.2614872Z acca7542dfc7: Waiting
+2026-11-01T14:29:56.2615400Z 6fc242d221a6: Waiting
+2026-11-01T14:29:56.2615967Z 3eb771151506: Waiting
+2026-11-01T14:29:56.3369635Z 5158630b9125: Waiting
+2026-11-01T14:29:56.3375107Z f574edac59d9: Waiting
+2026-11-01T14:29:56.3375832Z 655a4c3685fb: Waiting
+2026-11-01T14:29:56.3376343Z 43ff823d831e: Waiting
+2026-11-01T14:29:56.3376864Z 9093d72686e7: Waiting
+2026-11-01T14:29:56.3422747Z acca7542dfc7: Waiting
+2026-11-01T14:29:56.3423058Z 6fc242d221a6: Waiting
+2026-11-01T14:29:56.3423323Z 3eb771151506: Waiting
+2026-11-01T14:29:56.4548479Z 3eb771151506: Waiting
+2026-11-01T14:29:56.4578550Z 5158630b9125: Waiting
+2026-11-01T14:29:56.4579494Z f574edac59d9: Waiting
+2026-11-01T14:29:56.4579896Z 655a4c3685fb: Waiting
+2026-11-01T14:29:56.4580277Z 43ff823d831e: Waiting
+2026-11-01T14:29:56.4580669Z 9093d72686e7: Waiting
+2026-11-01T14:29:56.4596651Z acca7542dfc7: Waiting
+2026-11-01T14:29:56.4597406Z 6fc242d221a6: Waiting
+2026-11-01T14:29:56.5449449Z acca7542dfc7: Waiting
+2026-11-01T14:29:56.5452172Z 6fc242d221a6: Waiting
+2026-11-01T14:29:56.5452439Z 3eb771151506: Waiting
+2026-11-01T14:29:56.5465586Z 5158630b9125: Waiting
+2026-11-01T14:29:56.5482556Z f574edac59d9: Waiting
+2026-11-01T14:29:56.5482948Z 655a4c3685fb: Waiting
+2026-11-01T14:29:56.5483331Z 43ff823d831e: Waiting
+2026-11-01T14:29:56.5483703Z 9093d72686e7: Waiting
+2026-11-01T14:29:56.6488858Z f574edac59d9: Waiting
+2026-11-01T14:29:56.6489359Z 655a4c3685fb: Waiting
+2026-11-01T14:29:56.6489646Z 43ff823d831e: Waiting
+2026-11-01T14:29:56.6497006Z 9093d72686e7: Waiting
+2026-11-01T14:29:56.6498674Z acca7542dfc7: Waiting
+2026-11-01T14:29:56.6498931Z 6fc242d221a6: Waiting
+2026-11-01T14:29:56.6501903Z 3eb771151506: Waiting
+2026-11-01T14:29:56.6502386Z 5158630b9125: Waiting
+2026-11-01T14:29:56.7406423Z acca7542dfc7: Waiting
+2026-11-01T14:29:56.7452874Z 6fc242d221a6: Waiting
+2026-11-01T14:29:56.7455517Z 3eb771151506: Waiting
+2026-11-01T14:29:56.7455789Z f574edac59d9: Waiting
+2026-11-01T14:29:56.7456044Z 655a4c3685fb: Waiting
+2026-11-01T14:29:56.7456297Z 9093d72686e7: Waiting
+2026-11-01T14:29:56.8427260Z 9093d72686e7: Waiting
+2026-11-01T14:29:56.8429282Z acca7542dfc7: Waiting
+2026-11-01T14:29:56.8429661Z 6fc242d221a6: Waiting
+2026-11-01T14:29:56.8430015Z 3eb771151506: Waiting
+2026-11-01T14:29:56.8430357Z f574edac59d9: Waiting
+2026-11-01T14:29:56.8472448Z 655a4c3685fb: Waiting
+2026-11-01T14:29:56.9494444Z acca7542dfc7: Waiting
+2026-11-01T14:29:56.9535002Z 6fc242d221a6: Waiting
+2026-11-01T14:29:56.9536528Z 3eb771151506: Waiting
+2026-11-01T14:29:56.9537190Z f574edac59d9: Mounted from library/python
+2026-11-01T14:29:56.9542360Z 655a4c3685fb: Waiting
+2026-11-01T14:29:56.9545615Z 9093d72686e7: Waiting
+2026-11-01T14:29:57.0479495Z 6fc242d221a6: Waiting
+2026-11-01T14:29:57.0481054Z 3eb771151506: Mounted from library/python
+2026-11-01T14:29:57.0481527Z acca7542dfc7: Mounted from library/python
+2026-11-01T14:29:57.1350599Z 6fc242d221a6: Mounted from library/python
+2026-11-01T14:29:57.6380847Z 5158630b9125: Pushed
+2026-11-01T14:29:57.9450118Z 9093d72686e7: Pushed
+2026-11-01T14:29:57.9540090Z 655a4c3685fb: Pushed
+2026-11-01T14:30:00.6367155Z 43ff823d831e: Pushed
+2026-11-01T14:30:02.9669676Z 6: digest: sha256:4ae4c0ec26f394ca3e6c78f7496a92790c52dc7e0b57e52c49b14ce7bb280e19 size: 2056
+2026-11-01T14:30:02.9934622Z 
+2026-11-01T14:30:03.0000057Z [command]/usr/bin/docker history --format createdAt:{{.CreatedAt}}; layerSize:{{.Size}}; createdBy:{{.CreatedBy}}; layerId:{{.ID}} --no-trunc ***/student-registration:6
+2026-11-01T14:30:03.0313333Z [command]/usr/bin/docker push ***/student-registration:latest
+2026-11-01T14:30:03.1540227Z The push refers to repository [docker.io/***/student-registration]
+2026-11-01T14:30:03.2907527Z 3eb771151506: Waiting
+2026-11-01T14:30:03.2936372Z 9093d72686e7: Waiting
+2026-11-01T14:30:03.2948195Z f574edac59d9: Waiting
+2026-11-01T14:30:03.2957154Z 6fc242d221a6: Waiting
+2026-11-01T14:30:03.2975303Z acca7542dfc7: Waiting
+2026-11-01T14:30:03.2978767Z 5158630b9125: Waiting
+2026-11-01T14:30:03.2986790Z 655a4c3685fb: Waiting
+2026-11-01T14:30:03.2987552Z 43ff823d831e: Waiting
+2026-11-01T14:30:03.3670472Z createdAt:2026-11-01T14:29:53Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL image.base.ref.name=python:3.12-slim; layerId:sha256:4ae4c0ec26f394ca3e6c78f7496a92790c52dc7e0b57e52c49b14ce7bb280e19
+2026-11-01T14:30:03.3678824Z createdAt:2026-11-01T14:29:51Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL image.base.digest=sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159; layerId:sha256:4caca696742b7198df8ea5f626896d641ba3fcb03e1bbd162c535729c27d7fcc
+2026-11-01T14:30:03.3683063Z createdAt:2026-11-01T14:29:49Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.system.teamproject=SachinProduction; layerId:sha256:91416274bc602441b8c4e0d273516592672b505db195a342b640706f2434924a
+2026-11-01T14:30:03.3687336Z createdAt:2026-11-01T14:29:47Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.system.teamfoundationcollectionuri=https://dev.azure.com/SachinEnterprise/; layerId:sha256:6e35f7bbc372e2ec877d9151f6293052ffda01a59a3b37b39dd2e70053aec2cf
+2026-11-01T14:30:03.3688785Z createdAt:2026-11-01T14:29:46Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.sourceversion=48c2eba8626d7b4e893c980e8d8eb6c29596acab; layerId:sha256:13ca9910cf74dc5b2d24bba3f2642d46847aa4466e9c26c910423e5b29995747
+2026-11-01T14:30:03.3689917Z createdAt:2026-11-01T14:29:44Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.sourcebranchname=main; layerId:sha256:b425faa677e47a3f2ef0a799e350f0c6e5a8a511357f283690e97122c4bea0fb
+2026-11-01T14:30:03.3691720Z createdAt:2026-11-01T14:29:42Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.repository.uri=https://SachinEnterprise@dev.azure.com/SachinEnterprise/SachinProduction/_git/test.git; layerId:sha256:2384eab287eca2cabab1ae19daa7cf4b5882a85e27da565ddbc900688b5b2a04
+2026-11-01T14:30:03.3706237Z createdAt:2026-11-01T14:29:40Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.repository.name=test.git; layerId:sha256:5da1677f39b5b9fda9f6091c0b9e81f02077ad78c3b1c02c9f899b15e16ee44a
+2026-11-01T14:30:03.3709968Z createdAt:2026-11-01T14:29:38Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.definitionname=test.git (2); layerId:sha256:6cb913044d56c6300fdebd48fadd62720b212618ac71af2b9299102acf70575f
+2026-11-01T14:30:03.3711653Z createdAt:2026-11-01T14:29:37Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.builduri=vstfs:///Build/Build/6; layerId:sha256:407e3cba0d82f2119469464fb4209e2e4445f6533391adb79bc68826dd88a723
+2026-11-01T14:30:03.3713435Z createdAt:2026-11-01T14:29:35Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.buildnumber=20261101.6; layerId:sha256:f6c2369df3417a0d1696420f4f75a2316b5d581ee2d4f5ea91e6720389278a54
+2026-11-01T14:30:03.3714561Z createdAt:2026-11-01T14:29:33Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  CMD ["gunicorn" "--bind" "0.0.0.0:8080" "--workers" "2" "--access-logfile" "-" "--error-logfile" "-" "app:app"]; layerId:sha256:7cc54960e0fce8cdbe5dbbb69af0c21245b2071f77140fcd4b6ce887b0de21d4
+2026-11-01T14:30:03.3715620Z createdAt:2026-11-01T14:29:31Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  EXPOSE 8080; layerId:sha256:12470ae2e8fc38c0414f5fcfd0659fadbbf491efd17743e081c7105b0682d6b4
+2026-11-01T14:30:03.3716545Z createdAt:2026-11-01T14:29:29Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  USER 10001; layerId:sha256:68d4b4857ad472bb97d246d7e05283f4e2ca26c4f69dd47fa28ab818fadbf5f7
+2026-11-01T14:30:03.3717895Z createdAt:2026-11-01T14:29:27Z; layerSize:20.5kB; createdBy:/bin/sh -c #(nop) COPY --chown=appuser:appuser dir:9beb017deb230cb7f02f180b0f803e5c66bc5d8b913e890565916539ac2dd1d4 in . ; layerId:sha256:4ef4eccd2bd7e44dca0d8c44e1ef3a706c680084986a14724713a27f8376d4c1
+2026-11-01T14:30:03.3719287Z createdAt:2026-11-01T14:29:24Z; layerSize:22.4MB; createdBy:/bin/sh -c pip install --no-cache-dir -r requirements.txt     && useradd --uid 10001 --create-home appuser; layerId:sha256:86812b6a8db0ffdd0d65dcf6eea6a7d18846ba2b5daf8e4fe39b44f16edf16c7
+2026-11-01T14:30:03.3720565Z createdAt:2026-11-01T14:29:07Z; layerSize:12.3kB; createdBy:/bin/sh -c #(nop) COPY file:9f90967eec7838d385ac0b251abb9e76c9dd23c7853a731153da2e559686590e in . ; layerId:sha256:68b1ec75da57e04357b82b9b8fb4a7f0babbf8162db0be52ea7410bc50a9685c
+2026-11-01T14:30:03.3721704Z createdAt:2026-11-01T14:29:05Z; layerSize:8.19kB; createdBy:/bin/sh -c #(nop) WORKDIR /app; layerId:sha256:65afc10e4aac1e91fd4e7372a9c16fbca984b7e61dc4915000b445af8f44afb6
+2026-11-01T14:30:03.3723010Z createdAt:2026-11-01T14:29:03Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1; layerId:sha256:9cab4e6697d89b897dc0f230d56a2ddb38905a59458558975c7c8f86f2e37204
+2026-11-01T14:30:03.3724033Z createdAt:2026-10-28T02:03:39Z; layerSize:0B; createdBy:CMD ["python3"]; layerId:sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159
+2026-11-01T14:30:03.3725086Z createdAt:2026-10-28T02:03:39Z; layerSize:16.4kB; createdBy:RUN /bin/sh -c set -eux;  for src in idle3 pip3 pydoc3 python3 python3-config; do   dst="$(echo "$src" | tr -d 3)";   [ -s "/usr/local/bin/$src" ];   [ ! -e "/usr/local/bin/$dst" ];   ln -svT "$src" "/usr/local/bin/$dst";  done # buildkit; layerId:<missing>
+2026-11-01T14:30:03.3729675Z createdAt:2026-10-28T02:03:39Z; layerSize:41.4MB; createdBy:RUN /bin/sh -c set -eux;   savedAptMark="$(apt-mark showmanual)";  apt-get update;  apt-get install -y --no-install-recommends   dpkg-dev   g++   gcc   gnupg   libbluetooth-dev   libbz2-dev   libc6-dev   libdb-dev   libffi-dev   libgdbm-dev   liblzma-dev   libncursesw5-dev   libreadline-dev   libsqlite3-dev   libssl-dev   make   tk-dev   uuid-dev   wget   xz-utils   zlib1g-dev  ;   wget -O python.tar.xz "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz";  echo "$PYTHON_SHA256 *python.tar.xz" | sha256sum -c -;  wget -O python.tar.xz.asc "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc";  GNUPGHOME="$(mktemp -d)"; export GNUPGHOME;  gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$GPG_KEY";  gpg --batch --verify python.tar.xz.asc python.tar.xz;  gpgconf --kill all;  rm -rf "$GNUPGHOME" python.tar.xz.asc;  mkdir -p /usr/src/python;  tar --extract --directory /usr/src/python --strip-components=1 --file python.tar.xz;  rm python.tar.xz;   cd /usr/src/python;  gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)";  ./configure   --build="$gnuArch"   --enable-loadable-sqlite-extensions   --enable-optimizations   --enable-option-checking=fatal   --enable-shared   $(test "${gnuArch%%-*}" != 'riscv64' && echo '--with-lto')   --with-ensurepip  ;  nproc="$(nproc)";  EXTRA_CFLAGS="$(dpkg-buildflags --get CFLAGS)";  LDFLAGS="$(dpkg-buildflags --get LDFLAGS)";  LDFLAGS="${LDFLAGS:-} -Wl,--strip-all";  arch="$(dpkg --print-architecture)"; arch="${arch##*-}";  case "$arch" in   amd64|arm64)    EXTRA_CFLAGS="${EXTRA_CFLAGS:-} -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer";    ;;   i386)    ;;   *)    EXTRA_CFLAGS="${EXTRA_CFLAGS:-} -fno-omit-frame-pointer";    ;;  esac;  make -j "$nproc"   "EXTRA_CFLAGS=${EXTRA_CFLAGS:-}"   "LDFLAGS=${LDFLAGS:-}"  ;  rm python;  make -j "$nproc"   "EXTRA_CFLAGS=${EXTRA_CFLAGS:-}"   "LDFLAGS=${LDFLAGS:-} -Wl,-rpath='\$\$ORIGIN/../lib'"   python  ;  make install;   cd /;  rm -rf /usr/src/python;   find /usr/local -depth   \(    \( -type d -a \( -name test -o -name tests -o -name idle_test \) \)    -o \( -type f -a \( -name '*.pyc' -o -name '*.pyo' -o -name 'libpython*.a' \) \)   \) -exec rm -rf '{}' +  ;   ldconfig;   apt-mark auto '.*' > /dev/null;  apt-mark manual $savedAptMark;  find /usr/local -type f -executable -not \( -name '*tkinter*' \) -exec ldd '{}' ';'   | awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); printf "*%s\n", so }'   | sort -u   | xargs -rt dpkg-query --search   | awk 'sub(":$", "", $1) { print $1 }'   | sort -u   | xargs -r apt-mark manual  ;  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;  apt-get dist-clean;   export PYTHONDONTWRITEBYTECODE=1;  python3 --version;  pip3 --version # buildkit; layerId:<missing>
+2026-11-01T14:30:03.3739434Z createdAt:2026-10-28T01:54:50Z; layerSize:0B; createdBy:ENV PYTHON_SHA256=b5796915dc45ff745cfb4e990a7e7c93d6f546328a102ce31448d69ebc37575c; layerId:<missing>
+2026-11-01T14:30:03.3742969Z createdAt:2026-10-28T01:54:50Z; layerSize:0B; createdBy:ENV PYTHON_VERSION=3.12.16; layerId:<missing>
+2026-11-01T14:30:03.3744027Z createdAt:2026-10-28T01:54:50Z; layerSize:0B; createdBy:ENV GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305; layerId:<missing>
+2026-11-01T14:30:03.3745068Z createdAt:2026-10-28T01:54:50Z; layerSize:4.93MB; createdBy:RUN /bin/sh -c set -eux;  apt-get update;  apt-get install -y --no-install-recommends   ca-certificates   netbase   tzdata  ;  apt-get dist-clean # buildkit; layerId:<missing>
+2026-11-01T14:30:03.3745878Z createdAt:2026-10-28T01:54:50Z; layerSize:0B; createdBy:ENV LANG=C.UTF-8; layerId:<missing>
+2026-11-01T14:30:03.3746596Z createdAt:2026-10-28T01:54:50Z; layerSize:0B; createdBy:ENV PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin; layerId:<missing>
+2026-11-01T14:30:03.3747313Z createdAt:2026-10-27T00:00:00Z; layerSize:87.7MB; createdBy:# debian.sh --arch 'amd64' out/ 'trixie' '@1793059200'; layerId:<missing>
+2026-11-01T14:30:03.3747728Z 
+2026-11-01T14:30:03.3782501Z [command]/usr/bin/docker inspect 4ae4c0ec26f394ca3e6c78f7496a92790c52dc7e0b57e52c49b14ce7bb280e19 -f {{.RootFS.Layers}}
+2026-11-01T14:30:03.3884434Z acca7542dfc7: Waiting
+2026-11-01T14:30:03.3902021Z 5158630b9125: Waiting
+2026-11-01T14:30:03.3904377Z 655a4c3685fb: Waiting
+2026-11-01T14:30:03.3909673Z 43ff823d831e: Waiting
+2026-11-01T14:30:03.3910221Z 3eb771151506: Waiting
+2026-11-01T14:30:03.3910628Z 9093d72686e7: Waiting
+2026-11-01T14:30:03.3911118Z f574edac59d9: Waiting
+2026-11-01T14:30:03.3911560Z 6fc242d221a6: Waiting
+2026-11-01T14:30:03.4893729Z 9093d72686e7: Waiting
+2026-11-01T14:30:03.4894352Z f574edac59d9: Waiting
+2026-11-01T14:30:03.4894835Z 6fc242d221a6: Waiting
+2026-11-01T14:30:03.4895295Z acca7542dfc7: Waiting
+2026-11-01T14:30:03.4895741Z 5158630b9125: Waiting
+2026-11-01T14:30:03.4896189Z 655a4c3685fb: Waiting
+2026-11-01T14:30:03.4896634Z 43ff823d831e: Waiting
+2026-11-01T14:30:03.4897070Z 3eb771151506: Waiting
+2026-11-01T14:30:03.5346460Z [sha256:a5d6d345f6afa08d7c31272055746d60a838b290bfcc82c0a23e8e984d61a933 sha256:fab99bd4639aec48a77ec4d2e3564c0907e0e1e962bbf773219a0b503a168955 sha256:bca572b9549074f7cbc5f2d9d29f589038ff21c5f68cef2965167a33f177a9c0 sha256:cae4cb2b5e819765b847e67faa443b377607452f2ec949d142cad15d9d7ea0b3 sha256:26669041bb81336128a37b52a6c35dffff21210578d6719e9a2415c86f9ad3e4 sha256:362c12e4b456019afdeb3a34f3139340dbd3763f3bc7a55ea19ce9e293c9539d sha256:96cadf8d1f215f7101081d282ea594b99da098a30a312d181840d8470bc29362 sha256:6b86881a374ae33d6132db1ff9918b15d1f1891e4427493d5d37a05e2d1bdbc8]
+2026-11-01T14:30:03.5644085Z 
+2026-11-01T14:30:03.6403649Z 9093d72686e7: Waiting
+2026-11-01T14:30:03.6458441Z f574edac59d9: Waiting
+2026-11-01T14:30:03.6459377Z 6fc242d221a6: Waiting
+2026-11-01T14:30:03.6467954Z acca7542dfc7: Waiting
+2026-11-01T14:30:03.6468905Z 5158630b9125: Waiting
+2026-11-01T14:30:03.6469426Z 655a4c3685fb: Waiting
+2026-11-01T14:30:03.6469950Z 43ff823d831e: Waiting
+2026-11-01T14:30:03.6470441Z 3eb771151506: Waiting
+2026-11-01T14:30:03.7151099Z 9093d72686e7: Waiting
+2026-11-01T14:30:03.7158941Z f574edac59d9: Waiting
+2026-11-01T14:30:03.7189660Z 6fc242d221a6: Waiting
+2026-11-01T14:30:03.7195636Z acca7542dfc7: Waiting
+2026-11-01T14:30:03.7208934Z 5158630b9125: Waiting
+2026-11-01T14:30:03.7215373Z 655a4c3685fb: Waiting
+2026-11-01T14:30:03.7216048Z 43ff823d831e: Waiting
+2026-11-01T14:30:03.7216511Z 3eb771151506: Waiting
+2026-11-01T14:30:03.7854785Z 655a4c3685fb: Waiting
+2026-11-01T14:30:03.7855899Z 43ff823d831e: Waiting
+2026-11-01T14:30:03.7856744Z 3eb771151506: Waiting
+2026-11-01T14:30:03.7857280Z 9093d72686e7: Waiting
+2026-11-01T14:30:03.7857813Z f574edac59d9: Waiting
+2026-11-01T14:30:03.7858400Z 6fc242d221a6: Waiting
+2026-11-01T14:30:03.7858973Z acca7542dfc7: Waiting
+2026-11-01T14:30:03.7859507Z 5158630b9125: Waiting
+2026-11-01T14:30:03.8885262Z 655a4c3685fb: Waiting
+2026-11-01T14:30:03.8892902Z 43ff823d831e: Waiting
+2026-11-01T14:30:03.8893670Z 3eb771151506: Waiting
+2026-11-01T14:30:03.8894194Z 9093d72686e7: Waiting
+2026-11-01T14:30:03.8894678Z f574edac59d9: Waiting
+2026-11-01T14:30:03.8895169Z 6fc242d221a6: Waiting
+2026-11-01T14:30:03.8895664Z acca7542dfc7: Waiting
+2026-11-01T14:30:03.8896157Z 5158630b9125: Waiting
+2026-11-01T14:30:03.9994569Z 3eb771151506: Waiting
+2026-11-01T14:30:04.0057842Z 9093d72686e7: Waiting
+2026-11-01T14:30:04.0067237Z f574edac59d9: Waiting
+2026-11-01T14:30:04.0123270Z 6fc242d221a6: Waiting
+2026-11-01T14:30:04.0135984Z acca7542dfc7: Waiting
+2026-11-01T14:30:04.0166381Z 5158630b9125: Waiting
+2026-11-01T14:30:04.0172716Z 655a4c3685fb: Waiting
+2026-11-01T14:30:04.0193292Z 43ff823d831e: Waiting
+2026-11-01T14:30:04.0903794Z 655a4c3685fb: Waiting
+2026-11-01T14:30:04.0905748Z 43ff823d831e: Waiting
+2026-11-01T14:30:04.0906027Z 3eb771151506: Waiting
+2026-11-01T14:30:04.0906291Z 9093d72686e7: Waiting
+2026-11-01T14:30:04.0937278Z f574edac59d9: Waiting
+2026-11-01T14:30:04.0937735Z 6fc242d221a6: Waiting
+2026-11-01T14:30:04.0938010Z acca7542dfc7: Waiting
+2026-11-01T14:30:04.0938296Z 5158630b9125: Waiting
+2026-11-01T14:30:04.1970563Z f574edac59d9: Waiting
+2026-11-01T14:30:04.2168943Z 6fc242d221a6: Waiting
+2026-11-01T14:30:04.2188033Z acca7542dfc7: Waiting
+2026-11-01T14:30:04.2195440Z 5158630b9125: Waiting
+2026-11-01T14:30:04.2198497Z 655a4c3685fb: Waiting
+2026-11-01T14:30:04.2198894Z 43ff823d831e: Waiting
+2026-11-01T14:30:04.2199301Z 3eb771151506: Waiting
+2026-11-01T14:30:04.2199691Z 9093d72686e7: Waiting
+2026-11-01T14:30:04.2939354Z 5158630b9125: Waiting
+2026-11-01T14:30:04.2941552Z 655a4c3685fb: Waiting
+2026-11-01T14:30:04.2941822Z 43ff823d831e: Waiting
+2026-11-01T14:30:04.2942089Z 3eb771151506: Waiting
+2026-11-01T14:30:04.2942335Z 9093d72686e7: Waiting
+2026-11-01T14:30:04.2949130Z f574edac59d9: Waiting
+2026-11-01T14:30:04.2966776Z 6fc242d221a6: Waiting
+2026-11-01T14:30:04.2968329Z acca7542dfc7: Waiting
+2026-11-01T14:30:04.3857849Z acca7542dfc7: Waiting
+2026-11-01T14:30:04.3861053Z 5158630b9125: Waiting
+2026-11-01T14:30:04.3861349Z 655a4c3685fb: Waiting
+2026-11-01T14:30:04.3862108Z 43ff823d831e: Waiting
+2026-11-01T14:30:04.3862488Z 3eb771151506: Waiting
+2026-11-01T14:30:04.3862619Z 9093d72686e7: Waiting
+2026-11-01T14:30:04.3863239Z f574edac59d9: Waiting
+2026-11-01T14:30:04.3863338Z 6fc242d221a6: Waiting
+2026-11-01T14:30:04.5025560Z 9093d72686e7: Waiting
+2026-11-01T14:30:04.5032675Z f574edac59d9: Waiting
+2026-11-01T14:30:04.5033460Z 6fc242d221a6: Waiting
+2026-11-01T14:30:04.5037426Z acca7542dfc7: Waiting
+2026-11-01T14:30:04.5042081Z 5158630b9125: Waiting
+2026-11-01T14:30:04.5046562Z 655a4c3685fb: Waiting
+2026-11-01T14:30:04.5058470Z 43ff823d831e: Waiting
+2026-11-01T14:30:04.5059687Z 3eb771151506: Waiting
+2026-11-01T14:30:04.5866300Z f574edac59d9: Waiting
+2026-11-01T14:30:04.5937859Z 6fc242d221a6: Waiting
+2026-11-01T14:30:04.5961046Z acca7542dfc7: Waiting
+2026-11-01T14:30:04.6016951Z 5158630b9125: Waiting
+2026-11-01T14:30:04.6099967Z 655a4c3685fb: Waiting
+2026-11-01T14:30:04.6150580Z 43ff823d831e: Waiting
+2026-11-01T14:30:04.6207923Z 3eb771151506: Waiting
+2026-11-01T14:30:04.6211408Z 9093d72686e7: Waiting
+2026-11-01T14:30:04.6875483Z 655a4c3685fb: Waiting
+2026-11-01T14:30:04.6876297Z 43ff823d831e: Waiting
+2026-11-01T14:30:04.6876894Z 3eb771151506: Waiting
+2026-11-01T14:30:04.6877368Z 9093d72686e7: Waiting
+2026-11-01T14:30:04.6878356Z f574edac59d9: Waiting
+2026-11-01T14:30:04.6878891Z 6fc242d221a6: Waiting
+2026-11-01T14:30:04.6879351Z acca7542dfc7: Waiting
+2026-11-01T14:30:04.6880077Z 5158630b9125: Waiting
+2026-11-01T14:30:04.7843829Z 43ff823d831e: Waiting
+2026-11-01T14:30:04.7844201Z 3eb771151506: Waiting
+2026-11-01T14:30:04.7844868Z 9093d72686e7: Layer already exists
+2026-11-01T14:30:04.7845961Z f574edac59d9: Waiting
+2026-11-01T14:30:04.7847560Z 6fc242d221a6: Waiting
+2026-11-01T14:30:04.7848515Z acca7542dfc7: Waiting
+2026-11-01T14:30:04.7848652Z 5158630b9125: Layer already exists
+2026-11-01T14:30:04.7848773Z 655a4c3685fb: Waiting
+2026-11-01T14:30:04.8876881Z 655a4c3685fb: Waiting
+2026-11-01T14:30:04.8904732Z 43ff823d831e: Waiting
+2026-11-01T14:30:04.8905938Z 3eb771151506: Waiting
+2026-11-01T14:30:04.8908894Z f574edac59d9: Waiting
+2026-11-01T14:30:04.8910018Z 6fc242d221a6: Waiting
+2026-11-01T14:30:04.8910853Z acca7542dfc7: Waiting
+2026-11-01T14:30:04.9910220Z f574edac59d9: Waiting
+2026-11-01T14:30:04.9911019Z 6fc242d221a6: Waiting
+2026-11-01T14:30:04.9911376Z acca7542dfc7: Waiting
+2026-11-01T14:30:04.9912453Z 655a4c3685fb: Waiting
+2026-11-01T14:30:04.9912753Z 43ff823d831e: Waiting
+2026-11-01T14:30:04.9913053Z 3eb771151506: Waiting
+2026-11-01T14:30:05.0902741Z 3eb771151506: Waiting
+2026-11-01T14:30:05.0925003Z f574edac59d9: Waiting
+2026-11-01T14:30:05.0926230Z 6fc242d221a6: Layer already exists
+2026-11-01T14:30:05.0930719Z acca7542dfc7: Layer already exists
+2026-11-01T14:30:05.0931774Z 655a4c3685fb: Waiting
+2026-11-01T14:30:05.0932545Z 43ff823d831e: Waiting
+2026-11-01T14:30:05.1983302Z f574edac59d9: Waiting
+2026-11-01T14:30:05.2085505Z 655a4c3685fb: Waiting
+2026-11-01T14:30:05.2086255Z 43ff823d831e: Waiting
+2026-11-01T14:30:05.2086601Z 3eb771151506: Waiting
+2026-11-01T14:30:05.2847133Z 655a4c3685fb: Waiting
+2026-11-01T14:30:05.2879226Z 43ff823d831e: Waiting
+2026-11-01T14:30:05.2892323Z 3eb771151506: Waiting
+2026-11-01T14:30:05.2926188Z f574edac59d9: Waiting
+2026-11-01T14:30:05.3993857Z 655a4c3685fb: Layer already exists
+2026-11-01T14:30:05.4049513Z 43ff823d831e: Layer already exists
+2026-11-01T14:30:05.4074555Z 3eb771151506: Layer already exists
+2026-11-01T14:30:05.4075279Z f574edac59d9: Layer already exists
+2026-11-01T14:30:07.6444385Z latest: digest: sha256:4ae4c0ec26f394ca3e6c78f7496a92790c52dc7e0b57e52c49b14ce7bb280e19 size: 2056
+2026-11-01T14:30:07.6738944Z 
+2026-11-01T14:30:07.6859142Z [command]/usr/bin/docker history --format createdAt:{{.CreatedAt}}; layerSize:{{.Size}}; createdBy:{{.CreatedBy}}; layerId:{{.ID}} --no-trunc ***/student-registration:latest
+2026-11-01T14:30:07.7960218Z createdAt:2026-11-01T14:29:53Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL image.base.ref.name=python:3.12-slim; layerId:sha256:4ae4c0ec26f394ca3e6c78f7496a92790c52dc7e0b57e52c49b14ce7bb280e19
+2026-11-01T14:30:07.7974027Z createdAt:2026-11-01T14:29:51Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL image.base.digest=sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159; layerId:sha256:4caca696742b7198df8ea5f626896d641ba3fcb03e1bbd162c535729c27d7fcc
+2026-11-01T14:30:07.7975323Z createdAt:2026-11-01T14:29:49Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.system.teamproject=SachinProduction; layerId:sha256:91416274bc602441b8c4e0d273516592672b505db195a342b640706f2434924a
+2026-11-01T14:30:07.7975965Z createdAt:2026-11-01T14:29:47Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.system.teamfoundationcollectionuri=https://dev.azure.com/SachinEnterprise/; layerId:sha256:6e35f7bbc372e2ec877d9151f6293052ffda01a59a3b37b39dd2e70053aec2cf
+2026-11-01T14:30:07.7976574Z createdAt:2026-11-01T14:29:46Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.sourceversion=48c2eba8626d7b4e893c980e8d8eb6c29596acab; layerId:sha256:13ca9910cf74dc5b2d24bba3f2642d46847aa4466e9c26c910423e5b29995747
+2026-11-01T14:30:07.7977285Z createdAt:2026-11-01T14:29:44Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.sourcebranchname=main; layerId:sha256:b425faa677e47a3f2ef0a799e350f0c6e5a8a511357f283690e97122c4bea0fb
+2026-11-01T14:30:07.7978029Z createdAt:2026-11-01T14:29:42Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.repository.uri=https://SachinEnterprise@dev.azure.com/SachinEnterprise/SachinProduction/_git/test.git; layerId:sha256:2384eab287eca2cabab1ae19daa7cf4b5882a85e27da565ddbc900688b5b2a04
+2026-11-01T14:30:07.7978981Z createdAt:2026-11-01T14:29:40Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.repository.name=test.git; layerId:sha256:5da1677f39b5b9fda9f6091c0b9e81f02077ad78c3b1c02c9f899b15e16ee44a
+2026-11-01T14:30:07.7979870Z createdAt:2026-11-01T14:29:38Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.definitionname=test.git (2); layerId:sha256:6cb913044d56c6300fdebd48fadd62720b212618ac71af2b9299102acf70575f
+2026-11-01T14:30:07.7986387Z createdAt:2026-11-01T14:29:37Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.builduri=vstfs:///Build/Build/6; layerId:sha256:407e3cba0d82f2119469464fb4209e2e4445f6533391adb79bc68826dd88a723
+2026-11-01T14:30:07.7994999Z createdAt:2026-11-01T14:29:35Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  LABEL com.azure.dev.image.build.buildnumber=20261101.6; layerId:sha256:f6c2369df3417a0d1696420f4f75a2316b5d581ee2d4f5ea91e6720389278a54
+2026-11-01T14:30:07.7997949Z createdAt:2026-11-01T14:29:33Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  CMD ["gunicorn" "--bind" "0.0.0.0:8080" "--workers" "2" "--access-logfile" "-" "--error-logfile" "-" "app:app"]; layerId:sha256:7cc54960e0fce8cdbe5dbbb69af0c21245b2071f77140fcd4b6ce887b0de21d4
+2026-11-01T14:30:07.7999038Z createdAt:2026-11-01T14:29:31Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  EXPOSE 8080; layerId:sha256:12470ae2e8fc38c0414f5fcfd0659fadbbf491efd17743e081c7105b0682d6b4
+2026-11-01T14:30:07.7999894Z createdAt:2026-11-01T14:29:29Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  USER 10001; layerId:sha256:68d4b4857ad472bb97d246d7e05283f4e2ca26c4f69dd47fa28ab818fadbf5f7
+2026-11-01T14:30:07.8007710Z createdAt:2026-11-01T14:29:27Z; layerSize:20.5kB; createdBy:/bin/sh -c #(nop) COPY --chown=appuser:appuser dir:9beb017deb230cb7f02f180b0f803e5c66bc5d8b913e890565916539ac2dd1d4 in . ; layerId:sha256:4ef4eccd2bd7e44dca0d8c44e1ef3a706c680084986a14724713a27f8376d4c1
+2026-11-01T14:30:07.8016523Z createdAt:2026-11-01T14:29:24Z; layerSize:22.4MB; createdBy:/bin/sh -c pip install --no-cache-dir -r requirements.txt     && useradd --uid 10001 --create-home appuser; layerId:sha256:86812b6a8db0ffdd0d65dcf6eea6a7d18846ba2b5daf8e4fe39b44f16edf16c7
+2026-11-01T14:30:07.8017672Z createdAt:2026-11-01T14:29:07Z; layerSize:12.3kB; createdBy:/bin/sh -c #(nop) COPY file:9f90967eec7838d385ac0b251abb9e76c9dd23c7853a731153da2e559686590e in . ; layerId:sha256:68b1ec75da57e04357b82b9b8fb4a7f0babbf8162db0be52ea7410bc50a9685c
+2026-11-01T14:30:07.8018627Z createdAt:2026-11-01T14:29:05Z; layerSize:8.19kB; createdBy:/bin/sh -c #(nop) WORKDIR /app; layerId:sha256:65afc10e4aac1e91fd4e7372a9c16fbca984b7e61dc4915000b445af8f44afb6
+2026-11-01T14:30:07.8020070Z createdAt:2026-11-01T14:29:03Z; layerSize:0B; createdBy:/bin/sh -c #(nop)  ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1; layerId:sha256:9cab4e6697d89b897dc0f230d56a2ddb38905a59458558975c7c8f86f2e37204
+2026-11-01T14:30:07.8021704Z createdAt:2026-10-28T02:03:39Z; layerSize:0B; createdBy:CMD ["python3"]; layerId:sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159
+2026-11-01T14:30:07.8023257Z createdAt:2026-10-28T02:03:39Z; layerSize:16.4kB; createdBy:RUN /bin/sh -c set -eux;  for src in idle3 pip3 pydoc3 python3 python3-config; do   dst="$(echo "$src" | tr -d 3)";   [ -s "/usr/local/bin/$src" ];   [ ! -e "/usr/local/bin/$dst" ];   ln -svT "$src" "/usr/local/bin/$dst";  done # buildkit; layerId:<missing>
+2026-11-01T14:30:07.8028051Z createdAt:2026-10-28T02:03:39Z; layerSize:41.4MB; createdBy:RUN /bin/sh -c set -eux;   savedAptMark="$(apt-mark showmanual)";  apt-get update;  apt-get install -y --no-install-recommends   dpkg-dev   g++   gcc   gnupg   libbluetooth-dev   libbz2-dev   libc6-dev   libdb-dev   libffi-dev   libgdbm-dev   liblzma-dev   libncursesw5-dev   libreadline-dev   libsqlite3-dev   libssl-dev   make   tk-dev   uuid-dev   wget   xz-utils   zlib1g-dev  ;   wget -O python.tar.xz "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz";  echo "$PYTHON_SHA256 *python.tar.xz" | sha256sum -c -;  wget -O python.tar.xz.asc "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc";  GNUPGHOME="$(mktemp -d)"; export GNUPGHOME;  gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$GPG_KEY";  gpg --batch --verify python.tar.xz.asc python.tar.xz;  gpgconf --kill all;  rm -rf "$GNUPGHOME" python.tar.xz.asc;  mkdir -p /usr/src/python;  tar --extract --directory /usr/src/python --strip-components=1 --file python.tar.xz;  rm python.tar.xz;   cd /usr/src/python;  gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)";  ./configure   --build="$gnuArch"   --enable-loadable-sqlite-extensions   --enable-optimizations   --enable-option-checking=fatal   --enable-shared   $(test "${gnuArch%%-*}" != 'riscv64' && echo '--with-lto')   --with-ensurepip  ;  nproc="$(nproc)";  EXTRA_CFLAGS="$(dpkg-buildflags --get CFLAGS)";  LDFLAGS="$(dpkg-buildflags --get LDFLAGS)";  LDFLAGS="${LDFLAGS:-} -Wl,--strip-all";  arch="$(dpkg --print-architecture)"; arch="${arch##*-}";  case "$arch" in   amd64|arm64)    EXTRA_CFLAGS="${EXTRA_CFLAGS:-} -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer";    ;;   i386)    ;;   *)    EXTRA_CFLAGS="${EXTRA_CFLAGS:-} -fno-omit-frame-pointer";    ;;  esac;  make -j "$nproc"   "EXTRA_CFLAGS=${EXTRA_CFLAGS:-}"   "LDFLAGS=${LDFLAGS:-}"  ;  rm python;  make -j "$nproc"   "EXTRA_CFLAGS=${EXTRA_CFLAGS:-}"   "LDFLAGS=${LDFLAGS:-} -Wl,-rpath='\$\$ORIGIN/../lib'"   python  ;  make install;   cd /;  rm -rf /usr/src/python;   find /usr/local -depth   \(    \( -type d -a \( -name test -o -name tests -o -name idle_test \) \)    -o \( -type f -a \( -name '*.pyc' -o -name '*.pyo' -o -name 'libpython*.a' \) \)   \) -exec rm -rf '{}' +  ;   ldconfig;   apt-mark auto '.*' > /dev/null;  apt-mark manual $savedAptMark;  find /usr/local -type f -executable -not \( -name '*tkinter*' \) -exec ldd '{}' ';'   | awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); printf "*%s\n", so }'   | sort -u   | xargs -rt dpkg-query --search   | awk 'sub(":$", "", $1) { print $1 }'   | sort -u   | xargs -r apt-mark manual  ;  apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;  apt-get dist-clean;   export PYTHONDONTWRITEBYTECODE=1;  python3 --version;  pip3 --version # buildkit; layerId:<missing>
+2026-11-01T14:30:07.8077672Z createdAt:2026-10-28T01:54:50Z; layerSize:0B; createdBy:ENV PYTHON_SHA256=b5796915dc45ff745cfb4e990a7e7c93d6f546328a102ce31448d69ebc37575c; layerId:<missing>
+2026-11-01T14:30:07.8084064Z createdAt:2026-10-28T01:54:50Z; layerSize:0B; createdBy:ENV PYTHON_VERSION=3.12.16; layerId:<missing>
+2026-11-01T14:30:07.8085106Z createdAt:2026-10-28T01:54:50Z; layerSize:0B; createdBy:ENV GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305; layerId:<missing>
+2026-11-01T14:30:07.8085694Z createdAt:2026-10-28T01:54:50Z; layerSize:4.93MB; createdBy:RUN /bin/sh -c set -eux;  apt-get update;  apt-get install -y --no-install-recommends   ca-certificates   netbase   tzdata  ;  apt-get dist-clean # buildkit; layerId:<missing>
+2026-11-01T14:30:07.8087233Z createdAt:2026-10-28T01:54:50Z; layerSize:0B; createdBy:ENV LANG=C.UTF-8; layerId:<missing>
+2026-11-01T14:30:07.8087883Z createdAt:2026-10-28T01:54:50Z; layerSize:0B; createdBy:ENV PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin; layerId:<missing>
+2026-11-01T14:30:07.8088540Z createdAt:2026-10-27T00:00:00Z; layerSize:87.7MB; createdBy:# debian.sh --arch 'amd64' out/ 'trixie' '@1793059200'; layerId:<missing>
+2026-11-01T14:30:07.8088882Z 
+2026-11-01T14:30:07.8200762Z [command]/usr/bin/docker inspect 4ae4c0ec26f394ca3e6c78f7496a92790c52dc7e0b57e52c49b14ce7bb280e19 -f {{.RootFS.Layers}}
+2026-11-01T14:30:07.9697602Z [sha256:a5d6d345f6afa08d7c31272055746d60a838b290bfcc82c0a23e8e984d61a933 sha256:fab99bd4639aec48a77ec4d2e3564c0907e0e1e962bbf773219a0b503a168955 sha256:bca572b9549074f7cbc5f2d9d29f589038ff21c5f68cef2965167a33f177a9c0 sha256:cae4cb2b5e819765b847e67faa443b377607452f2ec949d142cad15d9d7ea0b3 sha256:26669041bb81336128a37b52a6c35dffff21210578d6719e9a2415c86f9ad3e4 sha256:362c12e4b456019afdeb3a34f3139340dbd3763f3bc7a55ea19ce9e293c9539d sha256:96cadf8d1f215f7101081d282ea594b99da098a30a312d181840d8470bc29362 sha256:6b86881a374ae33d6132db1ff9918b15d1f1891e4427493d5d37a05e2d1bdbc8]
+2026-11-01T14:30:07.9745189Z 
+2026-11-01T14:30:08.1485458Z ##[section]Finishing: Build and Push Docker Image
+2026-11-01T14:30:08.1609785Z ##[section]Starting: Checkout test.git@main to s
+2026-11-01T14:30:08.1621119Z ==============================================================================
+2026-11-01T14:30:08.1621474Z Task         : Get sources
+2026-11-01T14:30:08.1621687Z Description  : Get sources from a repository. Supports Git, TfsVC, and SVN repositories.
+2026-11-01T14:30:08.1621972Z Version      : 1.0.0
+2026-11-01T14:30:08.1622162Z Author       : Microsoft
+2026-11-01T14:30:08.1622332Z Help         : [More Information](https://go.microsoft.com/fwlink/?LinkId=798199)
+2026-11-01T14:30:08.1622605Z ==============================================================================
+2026-11-01T14:30:08.8494299Z Cleaning any cached credential from repository: test.git (Git)
+2026-11-01T14:30:08.9131918Z ##[section]Finishing: Checkout test.git@main to s
+2026-11-01T14:30:08.9254396Z ##[section]Starting: Finalize Job
+2026-11-01T14:30:08.9297163Z Cleaning up task key
+2026-11-01T14:30:08.9298469Z Start cleaning up orphan processes.
+2026-11-01T14:30:08.9864795Z ##[section]Finishing: Finalize Job
+2026-11-01T14:30:08.9925696Z ##[section]Finishing: Job

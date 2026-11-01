@@ -1,0 +1,28 @@
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - student-devops/app/**
+
+pool:
+  name: Default
+
+variables:
+  tag: '$(Build.BuildId)'
+
+steps:
+- checkout: self
+
+- task: Docker@2
+  displayName: Build and Push Docker Image
+  inputs:
+    command: buildAndPush
+    containerRegistry: 'dockerhub-connection'
+    repository: 'sachinmaskar/student-registration'
+    dockerfile: '$(Build.SourcesDirectory)/student-devops/Dockerfile'
+    buildContext: '$(Build.SourcesDirectory)/student-devops'
+    tags: |
+      $(tag)
+      latest
