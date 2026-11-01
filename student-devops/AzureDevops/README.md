@@ -1,13 +1,12 @@
 My Azure project execution
 -----------------------------------
+// this is azure pipeline to create docker image and push to the docker hub repository
 1. Import git repo in azure repo
 Git repo: https://github.com/Sachin-dev-hub/test.git
 
 2. created a agent in default agent pool(create new) in azure project setting
 Agent for linux
 ~/$ mkdir myagent && cd myagent
-~/myagent$ tar zxvf ~/Downloads/vsts-agent-linux-x64-5.281.1.tar.gz
-"C:\Users\sachin_maskar\Downloads\vsts-agent-linux-x64-5.281.1.tar.gz"
 
 dragged and dropped downloaded tar file in linux VM environment or download using wget command
 extract it in linux 
@@ -21,9 +20,8 @@ cd /home/azureagent/myagent
 ./config.sh
 Y
 server URL: https://dev.azure.com/SachinEnterprise
-
+>create token in azure devops > project setting> Persona Access Token > create new >
 > delete this token once work done from the azure
-
 Enter authentication type (press enter for PAT) >
 Enter personal access token > ************************************************************************************
 Connecting to server ...
@@ -53,7 +51,7 @@ root$# su azureagent
 > start agent
 ./run.sh
 
-// Keep user running, you will see the logs if you pipeline get triggered.
+// Keep user running, you would see the logs if you pipeline get triggered.
 
 ---------------------------------------------
 Azure Devops
